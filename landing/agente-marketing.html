@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agente de Marketing Wattiq</title>
+<meta name="description" content="O agente de IA da Wattiq monta a campanha, escreve a copy e entrega o anúncio da sua integradora em minutos — sem depender de agência.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap">
+<style>
+/* ── Wattiq · mundo escuro, assumido: um único tema, tudo pintado ────────── */
+:root{
+  --void:#07050C; --void-2:#0C0813;
+  --panel:#120C1D; --panel-2:#180F26;
+  --edge:#241833; --edge-2:#31204A;
+
+  --paper:#F7F3FB; --mist:#A899BC; --faint:#6E5D86;
+
+  --magenta:#F0269B; --violet:#7A3DF2; --violet-lo:#5B2BD6;
+  --grad:linear-gradient(96deg,#F0269B 0%,#C032D6 46%,#7A3DF2 100%);
+
+  --f-display:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+
+  --gutter:clamp(1.25rem,5vw,3rem);
+  --stage:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--void); color:var(--paper);
+  font-family:var(--f-body); font-size:1.0625rem; line-height:1.62;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important; transition-duration:.001ms!important}
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--magenta); outline-offset:3px; border-radius:4px}
+
+/* ── tipografia ──────────────────────────────────────────────────────────── */
+h1,h2,h3,.pill,.step-n,.brand-name{font-family:var(--f-display)}
+h1{
+  font-size:clamp(2.35rem,6.4vw,4.35rem); font-weight:800; line-height:1.02;
+  letter-spacing:-.038em; margin:0 0 1.15rem; text-wrap:balance;
+}
+h2{
+  font-size:clamp(1.65rem,3.5vw,2.45rem); font-weight:800; line-height:1.1;
+  letter-spacing:-.03em; margin:0 0 .85rem; text-wrap:balance;
+}
+h3{font-size:1.075rem; font-weight:700; letter-spacing:-.012em; margin:0 0 .35rem; line-height:1.3}
+p{margin:0 0 1rem; max-width:62ch}
+p:last-child{margin-bottom:0}
+.lead{font-size:clamp(1.05rem,1.9vw,1.235rem); color:#D9CFE6; line-height:1.55}
+.muted{color:var(--mist)}
+.grad{
+  background:var(--grad); -webkit-background-clip:text; background-clip:text;
+  color:var(--magenta); -webkit-text-fill-color:transparent;
+}
+.eyebrow{
+  font-family:var(--f-mono); font-size:.7rem; font-weight:500; letter-spacing:.19em;
+  text-transform:uppercase; color:var(--mist); margin:0 0 1rem;
+}
+.eyebrow .dot{color:var(--magenta)}
+
+/* ── estrutura ───────────────────────────────────────────────────────────── */
+.stage{width:min(var(--stage),100%); margin-inline:auto; padding-inline:var(--gutter)}
+section{border-top:1px solid var(--edge); padding-block:clamp(3.75rem,9vh,6.5rem)}
+section:first-of-type{border-top:0}
+
+/* ── topo ────────────────────────────────────────────────────────────────── */
+.top{padding-block:1.4rem}
+.top .stage{display:flex; align-items:center; justify-content:space-between; gap:1rem}
+.brand{display:flex; align-items:center; gap:.7rem; text-decoration:none}
+.brand-name{font-size:1.32rem; font-weight:800; letter-spacing:-.028em}
+.mark{width:38px; height:38px; flex:none; border-radius:11px; display:block}
+
+/* ── hero ────────────────────────────────────────────────────────────────── */
+.hero{position:relative; padding-top:clamp(2.5rem,6vh,4rem)}
+.glow{
+  position:absolute; inset:-14rem 0 auto 0; height:44rem; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(46rem 26rem at 14% 18%, rgba(240,38,155,.20), transparent 62%),
+    radial-gradient(40rem 24rem at 84% 6%, rgba(122,61,242,.22), transparent 64%);
+  filter:blur(6px);
+}
+.hero .stage{position:relative; z-index:1}
+.hero-grid{display:grid; gap:clamp(2.5rem,5vw,3.75rem); grid-template-columns:1fr}
+@media (min-width:960px){
+  .hero-grid{grid-template-columns:minmax(0,1.03fr) minmax(0,.97fr); align-items:center}
+}
+.hero-copy .lead{max-width:44ch}
+.cta-row{display:flex; flex-wrap:wrap; align-items:center; gap:.9rem 1.25rem; margin-top:2rem}
+.btn{
+  display:inline-flex; align-items:center; gap:.6rem; text-decoration:none;
+  font-family:var(--f-display); font-weight:700; font-size:1.02rem; letter-spacing:-.012em;
+  padding:.95rem 1.75rem; border-radius:999px; background:var(--grad); color:#fff;
+  box-shadow:0 10px 30px -12px rgba(240,38,155,.65);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.btn:hover{transform:translateY(-1px); box-shadow:0 16px 38px -12px rgba(240,38,155,.8)}
+.btn .arw{transition:transform .18s ease}
+.btn:hover .arw{transform:translateX(3px)}
+.btn-ghost{
+  display:inline-flex; align-items:center; gap:.5rem; text-decoration:none; color:var(--mist);
+  font-weight:600; font-size:.97rem; border-bottom:1px solid var(--edge-2); padding-bottom:2px;
+  transition:color .18s ease, border-color .18s ease;
+}
+.btn-ghost:hover{color:var(--paper); border-color:var(--magenta)}
+
+/* ── console do agente ───────────────────────────────────────────────────── */
+.console{
+  background:linear-gradient(168deg,var(--panel-2),var(--panel) 55%);
+  border:1px solid var(--edge-2); border-radius:18px; overflow:hidden;
+  box-shadow:0 40px 80px -40px rgba(0,0,0,.9), 0 0 0 1px rgba(240,38,155,.06);
+  font-size:.9rem;
+}
+.console-bar{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:.8rem 1.1rem; border-bottom:1px solid var(--edge);
+  background:rgba(255,255,255,.02);
+}
+.console-bar .who{
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--mist);
+}
+.timer{
+  font-family:var(--f-mono); font-size:.82rem; color:var(--paper);
+  display:inline-flex; align-items:center; gap:.5rem; font-variant-numeric:tabular-nums;
+}
+.beat{width:7px; height:7px; border-radius:50%; background:var(--magenta); flex:none}
+@media (prefers-reduced-motion:no-preference){
+  .beat{animation:beat 1.6s ease-in-out infinite}
+}
+@keyframes beat{0%,100%{opacity:1}50%{opacity:.25}}
+
+.console-body{padding:1.1rem 1.1rem 1.25rem}
+.field{
+  display:grid; grid-template-columns:8.5rem 1fr; gap:.5rem 1rem;
+  padding:.5rem 0; border-bottom:1px solid var(--edge);
+}
+.field:last-of-type{border-bottom:0}
+.field dt{
+  font-family:var(--f-mono); font-size:.68rem; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--faint); padding-top:.15rem;
+}
+.field dd{margin:0; color:var(--paper); font-weight:500}
+.field dd .sub{display:block; color:var(--mist); font-weight:400; font-size:.86rem}
+dl{margin:0}
+
+.console-sep{
+  display:flex; align-items:center; gap:.7rem; margin:1.15rem 0 .8rem;
+  font-family:var(--f-mono); font-size:.66rem; letter-spacing:.15em; text-transform:uppercase; color:var(--faint);
+}
+.console-sep::after{content:""; flex:1; height:1px; background:var(--edge)}
+.copy-out{
+  background:rgba(255,255,255,.025); border-left:2px solid transparent;
+  border-image:var(--grad) 1; border-image-slice:1; border-left-width:2px; border-left-style:solid;
+  padding:.85rem 1rem; border-radius:0 8px 8px 0; color:#E7DFF0; line-height:1.5;
+}
+.copy-out .h{display:block; font-family:var(--f-display); font-weight:700; margin-bottom:.3rem; color:#fff}
+.caret{display:inline-block; width:.55ch; background:var(--magenta); color:transparent; margin-left:1px}
+@media (prefers-reduced-motion:no-preference){.caret{animation:blink 1.05s steps(1) infinite}}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+.creatives{display:grid; grid-template-columns:repeat(3,1fr); gap:.6rem}
+.crea{
+  aspect-ratio:4/5; border-radius:9px; border:1px solid var(--edge-2); padding:.55rem;
+  display:flex; flex-direction:column; justify-content:flex-end; gap:.4rem; overflow:hidden;
+}
+.crea:nth-child(1){background:linear-gradient(160deg,#3A1230,#8E1E62)}
+.crea:nth-child(2){background:linear-gradient(160deg,#241246,#5B2BD6)}
+.crea:nth-child(3){background:linear-gradient(160deg,#3E1140,#B0289A)}
+.crea span{font-size:.66rem; line-height:1.25; color:rgba(255,255,255,.92); font-weight:600}
+.crea b{
+  align-self:flex-start; font-family:var(--f-display); font-size:.6rem; font-weight:700;
+  background:rgba(255,255,255,.92); color:#1A0B23; padding:.2rem .55rem; border-radius:999px;
+}
+.console-foot{
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.6rem;
+  border-top:1px solid var(--edge); padding:.8rem 1.1rem;
+  font-family:var(--f-mono); font-size:.7rem; letter-spacing:.08em; color:var(--mist);
+  background:rgba(255,255,255,.02);
+}
+.ok{color:#fff; background:rgba(240,38,155,.18); border:1px solid rgba(240,38,155,.45); border-radius:999px; padding:.2rem .6rem}
+
+/* ── listas de hairline ──────────────────────────────────────────────────── */
+.rows{margin-top:2.25rem; border-top:1px solid var(--edge)}
+.row{
+  display:grid; grid-template-columns:1fr; gap:.35rem 2.5rem;
+  padding:1.4rem 0; border-bottom:1px solid var(--edge);
+}
+@media (min-width:760px){.row{grid-template-columns:minmax(0,15rem) minmax(0,1fr); align-items:baseline}}
+.row p{margin:0; color:var(--mist); max-width:60ch}
+
+/* ── passos ──────────────────────────────────────────────────────────────── */
+.steps{margin-top:2.5rem; display:grid; gap:0}
+.step{
+  display:grid; grid-template-columns:auto minmax(0,1fr); gap:0 1.4rem;
+  padding-bottom:2.1rem;
+}
+.step:last-child{padding-bottom:0}
+.step-rail{display:flex; flex-direction:column; align-items:center; gap:.55rem}
+.step-n{
+  width:2.35rem; height:2.35rem; border-radius:50%; flex:none;
+  display:grid; place-items:center; font-size:.92rem; font-weight:800;
+  color:#fff; background:var(--grad);
+}
+.step:not(:last-child) .step-line{width:1px; flex:1; background:linear-gradient(var(--edge-2),var(--edge))}
+.step-body{padding-top:.28rem}
+.step-body p{color:var(--mist)}
+
+/* ── entregáveis ─────────────────────────────────────────────────────────── */
+.deliver{margin-top:2.5rem; display:grid; gap:1px; background:var(--edge); border:1px solid var(--edge); border-radius:14px; overflow:hidden}
+@media (min-width:720px){.deliver{grid-template-columns:1fr 1fr}}
+.d-item{background:var(--void-2); padding:1.5rem 1.4rem}
+.d-item ul{margin:.6rem 0 0; padding:0; list-style:none; display:grid; gap:.4rem}
+.d-item li{
+  position:relative; padding-left:1.1rem; color:var(--mist); font-size:.95rem; line-height:1.5;
+}
+.d-item li::before{
+  content:""; position:absolute; left:0; top:.62em; width:5px; height:5px; border-radius:50%;
+  background:var(--magenta);
+}
+
+/* ── regra da casa (citação) ─────────────────────────────────────────────── */
+.rule{
+  background:linear-gradient(150deg,rgba(240,38,155,.09),rgba(122,61,242,.09));
+  border:1px solid var(--edge-2); border-radius:16px; padding:clamp(1.75rem,4vw,2.75rem);
+  display:grid; gap:1.4rem;
+}
+@media (min-width:860px){.rule{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:2.5rem; align-items:center}}
+blockquote.rule-q{
+  margin:0; font-family:var(--f-display); font-weight:800; letter-spacing:-.028em;
+  font-size:clamp(1.4rem,3vw,2rem); line-height:1.16; text-wrap:balance;
+}
+.rule-src{
+  margin-top:.9rem; font-family:var(--f-mono); font-size:.68rem; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--mist);
+}
+
+/* ── benchmark ───────────────────────────────────────────────────────────── */
+.stats{margin-top:2.25rem; display:grid; gap:1px; background:var(--edge); border-block:1px solid var(--edge)}
+@media (min-width:720px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--void); padding:1.5rem 0 1.4rem}
+@media (min-width:720px){.stat{padding-inline:1.5rem}.stat:first-child{padding-left:0}}
+.stat .n{
+  font-family:var(--f-mono); font-size:clamp(2.1rem,5vw,2.9rem); line-height:1;
+  letter-spacing:-.04em; font-variant-numeric:tabular-nums; margin-bottom:.55rem;
+}
+.stat p{color:var(--mist); font-size:.95rem; margin:0; max-width:34ch}
+.caveat{
+  margin-top:1.4rem; padding-top:1rem; border-top:1px solid var(--edge);
+  font-size:.88rem; color:var(--faint); max-width:74ch;
+}
+
+/* ── comparativo ─────────────────────────────────────────────────────────── */
+.compare-wrap{margin-top:2.25rem; overflow-x:auto}
+table{border-collapse:collapse; width:100%; min-width:34rem; font-size:.95rem}
+caption{text-align:left; color:var(--faint); font-size:.85rem; padding-bottom:.9rem}
+th,td{text-align:left; padding:.95rem 1rem; border-bottom:1px solid var(--edge); vertical-align:top}
+thead th{
+  font-family:var(--f-mono); font-size:.67rem; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mist); font-weight:500; border-bottom-color:var(--edge-2);
+}
+tbody th{font-family:var(--f-body); font-weight:600; color:var(--paper); width:32%; padding-left:0}
+td.old{color:var(--mist)}
+td.new{color:var(--paper); font-weight:500; background:rgba(240,38,155,.05)}
+thead th.new{color:var(--paper)}
+
+/* ── faq ─────────────────────────────────────────────────────────────────── */
+.faq{margin-top:2.25rem; border-top:1px solid var(--edge)}
+details{border-bottom:1px solid var(--edge)}
+summary{
+  cursor:pointer; list-style:none; padding:1.2rem 2.5rem 1.2rem 0; position:relative;
+  font-family:var(--f-display); font-weight:700; font-size:1.05rem; letter-spacing:-.014em;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"+"; position:absolute; right:.35rem; top:50%; transform:translateY(-50%);
+  font-family:var(--f-mono); font-size:1.15rem; color:var(--magenta); transition:transform .2s ease;
+}
+details[open] summary::after{content:"−"}
+details p{padding:0 0 1.3rem; color:var(--mist); margin:0}
+
+/* ── fecho ───────────────────────────────────────────────────────────────── */
+.close{text-align:left}
+.close .stage{display:grid; gap:1.5rem; justify-items:start}
+.close h2{max-width:20ch}
+
+footer{border-top:1px solid var(--edge); padding-block:2.25rem; color:var(--faint); font-size:.86rem}
+footer .stage{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem}
+footer .brand-name{font-size:1.05rem; color:var(--mist)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <linearGradient id="wq" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F0269B"/><stop offset="50%" stop-color="#C032D6"/><stop offset="100%" stop-color="#7A3DF2"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="stage">
+    <a class="brand" href="#topo" id="topo">
+      <svg class="mark" viewBox="0 0 48 48" role="img" aria-label="Wattiq">
+        <rect x="0" y="0" width="48" height="48" rx="13" fill="url(#wq)"/>
+        <path d="M26.5 8 13 27h8.5L20 40l14-19.5h-8.7z" fill="#fff"/>
+        <path d="M31 9.5 17.5 28.5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".55"/>
+      </svg>
+      <span class="brand-name">Wattiq</span>
+    </a>
+    <a class="btn-ghost" href="#como-funciona">Como funciona</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="stage">
+    <div class="hero-grid">
+
+      <div class="hero-copy">
+        <p class="eyebrow">Agente de Marketing <span class="dot">·</span> energia solar</p>
+        <h1>Crie campanha, copy e anúncio em <span class="grad">3 minutos</span></h1>
+        <p class="lead">O Wattiq tem um agente de IA que sobe campanha, escreve a copy e monta o anúncio pra sua integradora, sem depender de agência ou de esperar prazo.</p>
+        <div class="cta-row">
+          <!-- TODO: trocar o href pelo link real de agendamento/WhatsApp antes de publicar -->
+          <a class="btn" href="#como-funciona">Veja como funciona <span class="arw" aria-hidden="true">→</span></a>
+          <a class="btn-ghost" href="#entrega">Ver o que sai pronto</a>
+        </div>
+      </div>
+
+      <div class="console" role="img" aria-label="Exemplo de campanha montada pelo agente: objetivo leads, público residencial, canais Facebook e Instagram, com copy e três criativos gerados.">
+        <div class="console-bar">
+          <span class="who">Wattiq · gerando campanha</span>
+          <span class="timer"><span class="beat" aria-hidden="true"></span><span id="clock">02:47</span> restante</span>
+        </div>
+
+        <div class="console-body">
+          <dl>
+            <div class="field"><dt>Objetivo</dt><dd>Leads</dd></div>
+            <div class="field"><dt>Público</dt><dd>Residencial · conta acima de R$ 450<span class="sub">Franca/SP e região, raio de 60 km</span></dd></div>
+            <div class="field"><dt>Canais</dt><dd>Facebook · Instagram</dd></div>
+            <div class="field"><dt>Formatos</dt><dd>Feed 4:5 · Stories 9:16 · Reels</dd></div>
+          </dl>
+
+          <p class="console-sep">Copy gerada pela IA</p>
+          <div class="copy-out">
+            <span class="h">Sua conta de luz não vai baixar sozinha.</span>
+            A gente simula quanto sobra no seu bolso todo mês com energia solar — com a sua conta na mão, sem enrolação<span class="caret" aria-hidden="true">&nbsp;</span>
+          </div>
+
+          <p class="console-sep">Criativo</p>
+          <div class="creatives">
+            <div class="crea"><span>Simule com a sua conta</span><b>Saiba mais</b></div>
+            <div class="crea"><span>Energia que se paga</span><b>Saiba mais</b></div>
+            <div class="crea"><span>Instalação sem obra na rotina</span><b>Saiba mais</b></div>
+          </div>
+        </div>
+
+        <div class="console-foot">
+          <span>3 variações de copy · 3 formatos</span>
+          <span class="ok">aguardando sua aprovação</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="problema">
+  <div class="stage">
+    <p class="eyebrow">O que trava hoje</p>
+    <h2>O anúncio da sua integradora atrasa sempre pelos mesmos três motivos</h2>
+    <p class="muted">Não é falta de ideia. É o caminho entre a ideia e o anúncio no ar.</p>
+
+    <div class="rows">
+      <div class="row">
+        <h3>O briefing vai e volta</h3>
+        <p>Você explica o que quer, alguém interpreta, volta diferente, você corrige. A campanha que era pra subir na segunda sobe na outra — e o mês já andou.</p>
+      </div>
+      <div class="row">
+        <h3>Sai uma versão só</h3>
+        <p>Um criativo, uma copy, nenhum teste. Quando o anúncio não performa, ninguém sabe se o problema foi o público, a oferta ou a frase — e ele fica no ar até alguém reparar.</p>
+      </div>
+      <div class="row">
+        <h3>Quem escreve não vende solar</h3>
+        <p>A copy fala de "energia limpa" quando o cliente quer saber quanto sobra no bolso, se o telhado dá, se a conta está no nome dele e como fica o financiamento. Sem isso, o lead chega frio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="stage">
+    <p class="eyebrow">Como funciona</p>
+    <h2>Três passos, na ordem em que acontecem</h2>
+    <p class="muted">Você continua decidindo o que vai ao ar. O agente tira de você a parte que consome tempo.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-rail"><span class="step-n">1</span><span class="step-line"></span></div>
+        <div class="step-body">
+          <h3>Você dá o contexto uma vez</h3>
+          <p>Cidade e raio de atendimento, ticket médio, o público que realmente fecha com você, o que já rodou e o que não funcionou. É o mesmo briefing que você daria numa call — a diferença é que no mês seguinte não precisa repetir.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-rail"><span class="step-n">2</span><span class="step-line"></span></div>
+        <div class="step-body">
+          <h3>O agente monta a campanha inteira</h3>
+          <p>Objetivo, público, canais, estrutura de conjuntos e sugestão de orçamento. Junto vem a copy — anúncio primário, títulos e descrição, em variações para testar — e o criativo em cada formato, já no tamanho certo de feed, stories e reels.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-rail"><span class="step-n">3</span><span class="step-line"></span></div>
+        <div class="step-body">
+          <h3>Você aprova e sobe</h3>
+          <p>Nada vai ao ar sem você olhar. Aprovou, o anúncio sobe. Não gostou de uma frase, pede a mudança na conversa e ele refaz na hora — não no prazo de retorno de ninguém.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="entrega">
+  <div class="stage">
+    <p class="eyebrow">O que sai pronto</p>
+    <h2>Não é uma sugestão de campanha. É a campanha.</h2>
+
+    <div class="deliver">
+      <div class="d-item">
+        <h3>Campanha estruturada</h3>
+        <ul>
+          <li>Objetivo e público, com o recorte da sua praça</li>
+          <li>Canais e divisão de conjuntos</li>
+          <li>Sugestão de orçamento e de período</li>
+        </ul>
+      </div>
+      <div class="d-item">
+        <h3>Copy do anúncio</h3>
+        <ul>
+          <li>Texto principal, títulos e descrição</li>
+          <li>Variações para teste, não uma versão única</li>
+          <li>Argumento de solar: economia, telhado, titularidade, financiamento</li>
+        </ul>
+      </div>
+      <div class="d-item">
+        <h3>Criativo por formato</h3>
+        <ul>
+          <li>Feed, stories e reels no tamanho certo</li>
+          <li>Identidade da sua integradora, não template genérico</li>
+          <li>Preview antes de subir</li>
+        </ul>
+      </div>
+      <div class="d-item">
+        <h3>Plano de veiculação</h3>
+        <ul>
+          <li>O que medir na primeira semana</li>
+          <li>Quando trocar criativo e quando trocar oferta</li>
+          <li>Para onde o lead vai quando clica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="honestidade">
+  <div class="stage">
+    <div class="rule">
+      <div>
+        <blockquote class="rule-q">Não colocar mais tráfego num funil que não converte.</blockquote>
+        <p class="rule-src">Regra do playbook Wattiq 360</p>
+      </div>
+      <div>
+        <p class="muted">Se o lead que entra hoje demora horas para ser respondido, mais anúncio só aumenta o desperdício — com nota fiscal.</p>
+        <p class="muted">Por isso o agente de marketing anda junto com o diagnóstico da sua operação. A gente olha o funil antes de abrir a torneira: quantos leads entram, em quanto tempo são respondidos, quantos viram proposta e onde o dinheiro está vazando. <strong style="color:var(--paper); font-weight:600">Processo primeiro, escala depois.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="velocidade">
+  <div class="stage">
+    <p class="eyebrow">Por que velocidade importa</p>
+    <h2>O anúncio traz o lead. O relógio decide se ele vira venda.</h2>
+
+    <div class="stats">
+      <div class="stat">
+        <p class="n grad">23%</p>
+        <p>de conversão quando o lead é respondido em até 1 minuto.</p>
+      </div>
+      <div class="stat">
+        <p class="n grad">1%</p>
+        <p>de conversão quando a resposta vem depois de um dia.</p>
+      </div>
+      <div class="stat">
+        <p class="n grad">7%</p>
+        <p>das empresas respondem em até 5 minutos. As outras deixam o lead esfriar.</p>
+      </div>
+    </div>
+
+    <p class="caveat">Referências de mercado do playbook Wattiq 360 — servem de parâmetro, não de garantia. O número da sua operação sai do diagnóstico, com os seus dados. Para fechar essa ponta, o agente de marketing costuma andar com o agente comercial, que responde todo lead em menos de um minuto, a qualquer hora.</p>
+  </div>
+</section>
+
+<section id="comparativo">
+  <div class="stage">
+    <p class="eyebrow">A diferença no dia a dia</p>
+    <h2>O que muda na prática</h2>
+
+    <div class="compare-wrap">
+      <table>
+        <caption>Comparação do processo de produção de campanha, não de resultado de mídia.</caption>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">O caminho de sempre</th>
+            <th scope="col" class="new">Com o agente de marketing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Da ideia ao anúncio pronto</th>
+            <td class="old">Dias, na fila de prazo de alguém</td>
+            <td class="new">Minutos, na hora em que você pediu</td>
+          </tr>
+          <tr>
+            <th scope="row">Variações por campanha</th>
+            <td class="old">Uma, e sem teste</td>
+            <td class="new">Várias copies e formatos para testar</td>
+          </tr>
+          <tr>
+            <th scope="row">Quem escreve</th>
+            <td class="old">Quem não conhece a venda de solar</td>
+            <td class="new">Um agente treinado no argumento do setor</td>
+          </tr>
+          <tr>
+            <th scope="row">Ajuste depois de subir</th>
+            <td class="old">Novo pedido, nova espera</td>
+            <td class="new">Você pede na conversa e ele refaz</td>
+          </tr>
+          <tr>
+            <th scope="row">Quem aprova</th>
+            <td class="old">Vai ao ar e você descobre depois</td>
+            <td class="new">Sempre você, antes de subir</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="stage">
+    <p class="eyebrow">Dúvidas que todo dono faz</p>
+    <h2>Antes de você perguntar</h2>
+
+    <div class="faq">
+      <details open>
+        <summary>Preciso demitir minha agência?</summary>
+        <p>Não. Muita integradora usa o agente para ganhar volume e velocidade e deixa a agência no que ela faz melhor. O agente não pede exclusividade e não some com o que já funciona.</p>
+      </details>
+      <details>
+        <summary>O anúncio sobe sozinho, sem eu ver?</summary>
+        <p>Só depois da sua aprovação. O agente monta tudo e deixa pronto; a última palavra é sua — inclusive sobre orçamento.</p>
+      </details>
+      <details>
+        <summary>Serve para quem vende comercial e industrial?</summary>
+        <p>Serve. O público e o argumento mudam — ticket maior, decisor diferente, ciclo mais longo — e isso entra no briefing. O que não muda é o processo: campanha, copy e criativo saem prontos do mesmo jeito.</p>
+      </details>
+      <details>
+        <summary>E se eu não gostar da copy?</summary>
+        <p>Você diz o que quer diferente e ele reescreve. Sem prazo de retorno, sem limite de versão e sem custo por peça extra.</p>
+      </details>
+      <details>
+        <summary>Isso substitui o vendedor?</summary>
+        <p>Não. O agente cuida da geração de demanda; diagnóstico, apresentação, negociação e fechamento continuam com gente. A IA aumenta velocidade e consistência — quem vende é o seu time.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="stage">
+    <p class="eyebrow">Próximo passo</p>
+    <h2>Veja o agente montando uma campanha da <span class="grad">sua</span> integradora</h2>
+    <p class="lead muted">Sem apresentação genérica: a gente usa a sua praça, o seu ticket e o público que fecha com você — e você olha o anúncio pronto na tela.</p>
+    <!-- TODO: trocar o href pelo link real de agendamento/WhatsApp antes de publicar -->
+    <a class="btn" href="#topo">Veja como funciona <span class="arw" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="stage">
+    <a class="brand" href="#topo">
+      <svg class="mark" viewBox="0 0 48 48" role="img" aria-label="Wattiq" style="width:26px;height:26px;border-radius:8px">
+        <rect x="0" y="0" width="48" height="48" rx="13" fill="url(#wq)"/>
+        <path d="M26.5 8 13 27h8.5L20 40l14-19.5h-8.7z" fill="#fff"/>
+      </svg>
+      <span class="brand-name">Wattiq</span>
+    </a>
+    <span>Agente de Marketing · parte do Wattiq 360</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var el = document.getElementById('clock');
+  if(!el) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var t = 167; // 02:47
+  setInterval(function(){
+    t = t > 0 ? t - 1 : 167;
+    var m = Math.floor(t/60), s = t % 60;
+    el.textContent = (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+  }, 1000);
+})();
+</script>
+
+</body>
+</html>
