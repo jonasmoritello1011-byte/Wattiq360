@@ -1,0 +1,968 @@
+<title>Raio-X LEOSOL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+
+<style>
+:root{
+  --ink:#141B24; --ink-2:#243140; --ink-3:#33445A;
+  --bg:#FFFFFF; --surface:#F2F5F8; --surface-2:#E8EDF2; --border:#D8E0E8;
+  --fg:#141B24; --fg-muted:#5C6B7A; --fg-faint:#8494A3;
+  --amber:#C05F17; --amber-bright:#E07A31; --amber-soft:#FBEDE2;
+  --teal:#20675A; --on-dark:#FFFFFF; --on-dark-muted:#9FB0C0;
+  --rail:#D8E0E8;
+  --shadow:0 1px 2px rgba(20,27,36,.06),0 8px 24px rgba(20,27,36,.06);
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-prose:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F151C; --surface:#18212C; --surface-2:#202B38; --border:#2A3745;
+    --fg:#EAF0F5; --fg-muted:#A3B2C0; --fg-faint:#7A8B9B;
+    --ink:#0A0F15; --ink-2:#18212C; --ink-3:#2A3745;
+    --amber:#E9873C; --amber-bright:#F0954E; --amber-soft:#2A1D12;
+    --teal:#4EA895; --rail:#2A3745;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F151C; --surface:#18212C; --surface-2:#202B38; --border:#2A3745;
+  --fg:#EAF0F5; --fg-muted:#A3B2C0; --fg-faint:#7A8B9B;
+  --ink:#0A0F15; --ink-2:#18212C; --ink-3:#2A3745;
+  --amber:#E9873C; --amber-bright:#F0954E; --amber-soft:#2A1D12;
+  --teal:#4EA895; --rail:#2A3745;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--fg);
+  font-family:var(--f-prose); font-size:16px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  scroll-snap-type:y mandatory; overflow-y:scroll; height:100vh;
+}
+h1,h2,h3,.num,.eyebrow,.tag{font-family:var(--f-display)}
+.num,.tnum{font-variant-numeric:tabular-nums}
+
+/* ---------- slide shell ---------- */
+.slide{
+  scroll-snap-align:start; scroll-snap-stop:always;
+  min-height:100vh; display:grid; align-content:center;
+  padding:clamp(2rem,5vh,4rem) clamp(1.25rem,4vw,3.5rem) clamp(4.5rem,8vh,5.5rem);
+  position:relative; background:var(--bg);
+}
+.slide.dark{background:var(--ink); color:var(--on-dark)}
+.slide.dark .muted{color:var(--on-dark-muted)}
+.stage{width:min(1180px,100%); margin:0 auto}
+
+h2{
+  font-size:clamp(1.6rem,3.3vw,2.65rem); font-weight:600; line-height:1.12;
+  letter-spacing:-.018em; margin:0 0 clamp(1.25rem,3vh,2rem); text-wrap:balance;
+}
+.slide.dark h2{color:var(--on-dark)}
+h2 em{font-style:normal; color:var(--amber)}
+.slide.dark h2 em{color:var(--amber-bright)}
+
+.eyebrow{
+  font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--amber); margin:0 0 .85rem;
+}
+.slide.dark .eyebrow{color:var(--amber-bright)}
+.muted{color:var(--fg-muted)}
+p{margin:0 0 .85rem; max-width:62ch}
+p:last-child{margin-bottom:0}
+
+/* ---------- premise rule: the deck's recurring motif ---------- */
+.premissa{
+  position:absolute; left:clamp(1.25rem,4vw,3.5rem); right:clamp(1.25rem,4vw,3.5rem);
+  bottom:clamp(1.6rem,3.5vh,2.4rem);
+  border-top:1px solid var(--border); padding-top:.6rem;
+  font-size:.78rem; line-height:1.45; color:var(--fg-muted); max-width:none;
+}
+.slide.dark .premissa{border-top-color:var(--ink-3); color:var(--on-dark-muted)}
+.premissa b{
+  font-family:var(--f-display); font-weight:600; font-size:.68rem;
+  letter-spacing:.12em; text-transform:uppercase; color:var(--amber); margin-right:.6rem;
+}
+.slide.dark .premissa b{color:var(--amber-bright)}
+
+/* ---------- building blocks ---------- */
+.grid{display:grid; gap:clamp(.75rem,1.6vw,1.15rem)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.split{display:grid; gap:clamp(1.25rem,3vw,2.5rem); grid-template-columns:1fr 1fr; align-items:start}
+.split-w{grid-template-columns:1.35fr 1fr}
+@media (max-width:820px){
+  .g3,.g4,.split,.split-w{grid-template-columns:1fr}
+  .g2{grid-template-columns:1fr}
+}
+
+.panel{background:var(--surface); border-radius:10px; padding:clamp(1rem,2vw,1.5rem)}
+.slide.dark .panel{background:var(--ink-2)}
+.panel-line{background:none; border:1px solid var(--border); border-radius:10px; padding:clamp(1rem,2vw,1.5rem)}
+.solid{background:var(--ink); color:var(--on-dark); border-radius:10px; padding:clamp(1rem,2vw,1.5rem)}
+.slide.dark .solid{background:var(--ink-3)}
+
+.tag{
+  display:inline-block; font-size:.68rem; font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--fg-muted); margin-bottom:.6rem;
+}
+.slide.dark .tag{color:var(--on-dark-muted)}
+
+.num{font-weight:700; letter-spacing:-.03em; line-height:1}
+.n-xl{font-size:clamp(3.6rem,9vw,7.2rem)}
+.n-lg{font-size:clamp(2.1rem,4.4vw,3.3rem)}
+.n-md{font-size:clamp(1.5rem,2.7vw,2.05rem)}
+.amber{color:var(--amber)}
+.slide.dark .amber{color:var(--amber-bright)}
+.tealc{color:var(--teal)}
+
+.lede{font-size:clamp(1.02rem,1.5vw,1.22rem); line-height:1.5}
+.small{font-size:.86rem; line-height:1.5}
+.xsmall{font-size:.78rem; line-height:1.45}
+
+ul.plain{list-style:none; margin:0; padding:0; display:grid; gap:.55rem}
+ul.plain li{padding-left:1.05rem; position:relative}
+ul.plain li::before{
+  content:""; position:absolute; left:0; top:.62em; width:5px; height:5px;
+  border-radius:50%; background:var(--amber);
+}
+.slide.dark ul.plain li::before{background:var(--amber-bright)}
+
+/* funnel */
+.funnel{display:flex; align-items:stretch; gap:.5rem; flex-wrap:wrap}
+.fstep{
+  flex:1 1 0; min-width:105px; background:var(--surface); border-radius:8px;
+  padding:.9rem .6rem; text-align:center;
+}
+.fstep.blind{background:transparent; border:1px dashed var(--border); color:var(--fg-faint)}
+.fstep.end{background:var(--ink); color:var(--on-dark)}
+.fstep .fn{font-family:var(--f-display); font-weight:700; font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.1; font-variant-numeric:tabular-nums}
+.fstep .fl{font-size:.74rem; margin-top:.25rem; color:var(--fg-muted)}
+.fstep.end .fl{color:var(--on-dark-muted)}
+.fstep.blind .fl{color:var(--fg-faint)}
+
+/* rows */
+.row{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:.62rem .9rem; border-radius:7px; background:var(--surface)}
+.row.hi{background:var(--ink); color:var(--on-dark)}
+.row .rk{font-size:.95rem}
+.row .rv{font-family:var(--f-display); font-weight:700; font-size:1.05rem; font-variant-numeric:tabular-nums}
+
+figure{margin:0}
+figcaption{font-size:.82rem; color:var(--fg-muted); margin-top:.7rem; max-width:62ch}
+.slide.dark figcaption{color:var(--on-dark-muted)}
+svg{max-width:100%; height:auto; display:block}
+
+.scroll-x{overflow-x:auto}
+
+/* ---------- chrome: rail, counter, notes ---------- */
+#rail{position:fixed; top:0; left:0; height:3px; background:var(--amber-bright); width:0; z-index:60; transition:width .18s ease}
+#hud{
+  position:fixed; right:clamp(1rem,3vw,2rem); bottom:clamp(1rem,3vh,1.6rem); z-index:60;
+  display:flex; align-items:center; gap:.5rem;
+  font-family:var(--f-display); font-size:.78rem; font-variant-numeric:tabular-nums;
+}
+#hud button{
+  font:inherit; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--fg-muted); background:var(--bg); border:1px solid var(--border);
+  border-radius:999px; padding:.4rem .8rem; cursor:pointer;
+}
+#hud button:hover{color:var(--fg); border-color:var(--fg-faint)}
+#hud button:focus-visible,#notes button:focus-visible{outline:2px solid var(--amber-bright); outline-offset:2px}
+#count{color:var(--fg-faint); background:var(--bg); border:1px solid var(--border); border-radius:999px; padding:.4rem .75rem}
+
+#notes{
+  position:fixed; inset:auto 0 0 0; z-index:70; max-height:52vh; overflow-y:auto;
+  background:var(--ink); color:var(--on-dark); border-top:2px solid var(--amber-bright);
+  padding:1.2rem clamp(1.25rem,4vw,3.5rem) 1.4rem; box-shadow:0 -8px 32px rgba(0,0,0,.25);
+}
+#notes[hidden]{display:none!important}
+#notes h3{font-size:.72rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--amber-bright); margin:0 0 .7rem}
+#notes .body{white-space:pre-wrap; font-size:.94rem; line-height:1.6; max-width:78ch}
+#notes button{position:absolute; top:.9rem; right:clamp(1.25rem,4vw,3.5rem); font-family:var(--f-display); font-size:.72rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; background:none; border:1px solid var(--ink-3); color:var(--on-dark-muted); border-radius:999px; padding:.35rem .75rem; cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important; scroll-behavior:auto!important}}
+
+@media print{
+  body{height:auto; overflow:visible; scroll-snap-type:none}
+  .slide{min-height:auto; page-break-after:always; break-after:page; padding:1.5cm}
+  #rail,#hud,#notes{display:none!important}
+  .slide.dark{background:#141B24!important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+}
+</style>
+
+<div id="rail"></div>
+
+<!-- ============ 1 ============ -->
+<section class="slide dark" data-notes="Antes de qualquer coisa, quero começar pelo que está certo. Você fecha 35% de tudo que apresenta. Isso é bom. Muita gente em Franca não chega perto disso.
+
+Então o problema da LEOSOL não é vender. Você sabe vender. O problema é o que acontece antes da proposta — e uma coisa que eu vou te mostrar aqui é que 40 dos seus 60 leads somem todo mês num pedaço do funil que ninguém na empresa mede.
+
+E já vou adiantar duas coisas. PRIMEIRA: eu não vim te prometer os R$ 300 mil. Arrumar o funil não te leva lá. SEGUNDA: o que eu quero desta reunião não é assinatura. É 45 minutos da sua agenda até sexta.
+
+[SE CONTESTAR '35% é pouco'] Pode ser que você ache pouco, e a gente pode subir. Mas repara: é a única etapa do seu funil que tem número dos dois lados. As três do meio não têm.">
+  <div class="stage">
+    <p class="eyebrow">Diagnóstico Wattiq 360 · LEOSOL · Franca/SP</p>
+    <div class="split" style="align-items:center">
+      <div>
+        <div class="num n-xl">35%</div>
+        <p class="small muted" style="margin-top:.9rem">proposta&nbsp;→&nbsp;contrato<br>últimos 30 dias</p>
+      </div>
+      <div>
+        <h2 style="margin-bottom:1rem">Você fecha 35% do que apresenta. O problema não é vender.</h2>
+        <p class="lede amber" style="font-weight:600">O problema é o que acontece antes dela.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>informado pelo dono na coleta de 07/09/2026 · confiança alta</p>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="slide" data-notes="Essa é a sua empresa no último mês, com os SEUS números, não com os meus.
+
+Sessenta leads. Vinte propostas. Sete contratos. R$ 140 mil faturados, R$ 42 mil de margem. Cada contrato seu vale R$ 6 mil de margem — esse número a gente vai usar o resto da reunião inteira.
+
+E olha a faixa aqui embaixo, porque ela importa. Você fecha 35%. Você responde em 10 minutos, e no seu mercado só 7 em cada 100 empresas respondem em menos de 5 — isso é referência do nosso material, não é garantia, mas dá a ordem de grandeza. E você construiu seis anos de indicação, que é o canal mais barato e que mais converte no setor inteiro.
+
+Nada disso vai ser mexido. O que a gente vai mexer é no pedaço do meio.
+
+[SE CONTESTAR 'esse mês foi fraco/forte'] Ótimo que você falou. Essa é literalmente uma das perguntas da call: esse mês foi típico? Tudo o que eu mostro hoje é multiplicado por R$ 20 mil de ticket e 30% de margem. Se o mês foi atípico, todos os meus números se mexem junto — e aí eu refaço na sua frente.">
+  <div class="stage">
+    <h2>60 leads entraram. 7 viraram contrato.</h2>
+    <div class="funnel" style="margin-bottom:1.5rem">
+      <div class="fstep"><div class="fn">60</div><div class="fl">leads</div></div>
+      <div class="fstep"><div class="fn">20</div><div class="fl">propostas</div></div>
+      <div class="fstep end"><div class="fn">7</div><div class="fl">contratos</div></div>
+    </div>
+    <div class="split split-w">
+      <div>
+        <div class="num n-lg">R$ 140.000</div>
+        <p class="small muted" style="margin-top:.4rem">faturados · R$ 42.000 de margem<br><strong style="color:var(--fg)">R$ 6.000 de margem por contrato</strong> — a unidade de conta da reunião inteira</p>
+      </div>
+      <div class="panel">
+        <p class="tag" style="color:var(--teal)">O que já está certo</p>
+        <div class="grid" style="gap:.7rem">
+          <div><span class="num n-md tealc">35%</span> <span class="small muted">de fechamento sobre proposta</span></div>
+          <div><span class="num n-md tealc">10 min</span> <span class="small muted">de primeira resposta</span></div>
+          <div><span class="num n-md tealc">6 anos</span> <span class="small muted">de indicação construída</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>todos os números informados pelo dono em 07/09/2026 · ticket médio R$ 20.000 · margem 30% · confiança alta</p>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="slide" data-notes="Aqui está o buraco. Sessenta entram, vinte viram proposta. Quarenta somem.
+
+E eu não sei te dizer onde — nem você. Porque essas três caixinhas do meio não existem em lugar nenhum. Não tem planilha, não tem sistema, não tem anotação.
+
+E olha, isso não é UM problema. São QUATRO problemas diferentes, e a gente não sabe qual é o seu. Ou o cara nunca foi respondido de verdade. Ou foi respondido e não tinha perfil — e aí o problema nem é seu, é de quem está te mandando lead. Ou tinha perfil e não avançou. Ou você foi lá, olhou o telhado e não mandou proposta.
+
+Quatro causas, quatro correções, quatro preços diferentes. Enquanto isso não tiver número, qualquer um que te venda solução aqui está chutando. Inclusive eu.
+
+[PERGUNTAR E CALAR A BOCA] Chutando agora, sem pensar muito: dos 40 leads que não viraram proposta no mês passado, quantos você chegou a falar de verdade?
+
+[SE CONTESTAR 'esses 40 são só curioso'] Pode ser que você esteja certo. É por isso que minha conta começa em 10% de recuperação e não em 100%. Mas nem você nem eu sabemos qual parte. E se der que eram todos curiosos, ótimo: quer dizer que sua qualificação funciona e o problema muda de lugar — vira geração. Aí eu troco a prioridade do plano na sua frente.">
+  <div class="stage">
+    <h2>Entre o lead e a proposta, <em>40 pessoas somem</em> — e ninguém sabe onde</h2>
+    <div class="scroll-x">
+      <div class="funnel" style="margin-bottom:.65rem; flex-wrap:nowrap; min-width:640px">
+        <div class="fstep"><div class="fn">60</div><div class="fl">leads</div></div>
+        <div class="fstep blind"><div class="fn">?</div><div class="fl">contato efetivo</div></div>
+        <div class="fstep blind"><div class="fn">?</div><div class="fl">qualificados</div></div>
+        <div class="fstep blind"><div class="fn">?</div><div class="fl">diagnósticos</div></div>
+        <div class="fstep"><div class="fn">20</div><div class="fl">propostas</div></div>
+        <div class="fstep end"><div class="fn">7</div><div class="fl">contratos</div></div>
+      </div>
+    </div>
+    <p class="xsmall amber" style="font-weight:600; margin-bottom:1.5rem">↑ estas três etapas não são medidas hoje</p>
+    <div class="split split-w">
+      <div style="display:flex; gap:1.2rem; align-items:center">
+        <div class="num n-xl amber" style="font-size:clamp(3rem,7vw,5.4rem)">40</div>
+        <p class="lede" style="margin:0"><strong>leads por mês</strong> entram e não viram proposta — 66,7% de tudo que chega</p>
+      </div>
+      <div class="panel-line">
+        <p class="tag">São quatro problemas diferentes</p>
+        <ul class="plain small">
+          <li>nunca foi respondido de verdade</li>
+          <li>foi respondido e não tinha perfil</li>
+          <li>tinha perfil e não avançou</li>
+          <li>foi visitado e não recebeu proposta</li>
+        </ul>
+        <p class="small amber" style="font-weight:600; margin:.9rem 0 0">Quatro correções, quatro preços.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>60 − 20 = 40, aritmética sobre dados informados · confiança alta · as três etapas do meio não são medidas (evidência direta da coleta)</p>
+</section>
+
+<!-- ============ 4 ============ -->
+<section class="slide" data-notes="Vocês são cinco. E quem vende é um: você.
+
+Você prospecta, responde, qualifica, visita, dimensiona, faz a proposta, negocia, fecha e ainda entrega para a obra. Mais tocar a empresa, o banco e a homologação.
+
+Vinte propostas por mês é uma por dia útil, feita por essa pessoa. Não é falta de vontade — é que o dia tem o tamanho que tem.
+
+E tem uma conta que eu quero deixar aqui sem drama: se você ficar duas semanas fora, por qualquer motivo, isso é uns R$ 70 mil de faturamento que não acontecem. Não porque a empresa é ruim. Porque não tem ninguém que consiga pegar uma oportunidade no meio, já que nada está registrado.
+
+[PERGUNTAR E CALAR A BOCA] Se amanhã eu te tirasse toda a triagem da mão, quantas propostas por mês você faria? 20 ainda, ou mais?
+
+[SE CONTESTAR 'eu faço mais que 20 se precisar'] Isso é exatamente o que eu preciso saber, e é a pergunta que eu vou te fazer na call. Se o seu teto for 30 e não 20, a conta de capacidade muda para melhor, e a urgência de contratar gente cai bastante. Eu montei tudo assumindo 20 porque foi o que apareceu no mês. Se for 30, eu refaço.">
+  <div class="stage">
+    <h2>Uma pessoa faz tudo. E essa pessoa é você.</h2>
+    <div class="scroll-x" style="margin-bottom:.5rem">
+      <div style="display:flex; gap:.4rem; min-width:720px">
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">prospecção</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">1ª resposta</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">qualificação</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">visita</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">dimensionar</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">proposta</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">negociação</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">fechamento</div></div>
+        <div class="fstep" style="flex:1"><div class="fl" style="color:var(--amber); font-weight:600">você</div><div class="fl">handoff</div></div>
+      </div>
+    </div>
+    <div class="solid" style="padding:.75rem 1.2rem; margin-bottom:1.5rem; text-align:center">
+      <span class="small" style="font-weight:600">+ gestão da empresa · obra · banco · homologação</span>
+    </div>
+    <div class="split split-w">
+      <div style="display:flex; gap:1.2rem; align-items:center">
+        <div class="num" style="font-size:clamp(2.8rem,6.5vw,5rem)">20</div>
+        <p class="small muted" style="margin:0">propostas por mês<br>≈ 1 por dia útil</p>
+      </div>
+      <div class="panel">
+        <p class="lede" style="font-weight:600; margin-bottom:.6rem">5 pessoas na empresa. Nenhuma outra em vendas.</p>
+        <p class="small muted">Se você ficar duas semanas fora, são cerca de R$ 70 mil de faturamento que não acontecem — porque não há ninguém que consiga pegar uma oportunidade no meio, já que nada está registrado.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>5 pessoas na empresa, nenhuma outra em vendas · informado pelo dono · confiança alta</p>
+</section>
+
+<!-- ============ 5 ============ -->
+<section class="slide" data-notes="[ESTE SLIDE É UMA PERGUNTA. FAÇA E ESPERE. NÃO PREENCHA O SILÊNCIO.]
+
+Eu pesquisei o mercado de Franca na semana passada e achei sete concorrentes com site, Instagram ou ficha no Google. A LEOSOL eu não achei em busca nenhuma.
+
+E eu não vou afirmar que você não tem — eu não achei, que é diferente. Então a pergunta é essa, e é sua a resposta: hoje a LEOSOL tem site? Tem Instagram? Tem ficha no Google Meu Negócio?
+
+[SE ELE DISSER QUE NÃO TEM] Então olha o que provavelmente está acontecendo. Você perde por 'preço e concorrência', certo? Eu acho que boa parte dessa perda não é preço. É que a pessoa recebeu sua indicação, foi conferir seu nome antes de gastar R$ 20 mil, achou sete empresas e não achou você. Ela não te comparou por preço. Ela te comparou por quem parece existir. E isso custa tempo para arrumar, não custa verba.
+
+[SE ELE DISSER QUE TEM] Melhor ainda, então a gente parte de mais alto. Mas repara: se eu, procurando de propósito, não achei — o seu cliente, que procura com pressa, também não acha. O problema deixa de ser criar e passa a ser fazer aparecer. Muda a tarefa, não muda a direção. E fica mais barato.">
+  <div class="stage">
+    <h2>Quando alguém recebe uma indicação sua e vai conferir no Google, o que aparece?</h2>
+    <div class="split">
+      <div class="panel">
+        <p class="tag">O que eu encontrei em Franca</p>
+        <ul class="plain">
+          <li>ViaSol</li><li>SolarPrime</li><li>Ilumisol</li><li>Legsol</li>
+          <li>Franca Energia Solar</li><li>Lux Sol</li><li>Solarium</li>
+        </ul>
+        <p class="xsmall muted" style="margin:.9rem 0 0; font-style:italic">sete concorrentes com site, Instagram ou ficha no Google</p>
+      </div>
+      <div style="border:2px dashed var(--amber); border-radius:10px; padding:clamp(1.2rem,3vw,2rem); text-align:center; display:grid; align-content:center; gap:.5rem; min-height:100%">
+        <div class="num amber" style="font-size:clamp(3.5rem,8vw,6rem)">?</div>
+        <div class="num n-md">LEOSOL</div>
+        <p class="small muted" style="margin:0 auto">não localizada na minha busca</p>
+        <p class="small amber" style="font-weight:600; margin:.4rem auto 0; max-width:34ch">“não localizado” não é o mesmo que “não existe” — é a primeira coisa que eu preciso confirmar com você</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>pesquisa de 07/09/2026 · esta é uma pergunta ao vivo, não uma afirmação</p>
+</section>
+
+<!-- ============ 6 ============ -->
+<section class="slide" data-notes="Vamos ao dinheiro. E eu vou te dar o número mais baixo dos três que eu calculei, de propósito.
+
+Dos 40 leads que somem, se a gente recuperar só 10% — dez por cento, o piso — e desses você fechar os seus 35% de sempre, dá R$ 8.400 de margem por mês. A conta está aberta aí embaixo: três dos quatro números são SEUS, informados por você. O único que eu estimei foi a taxa de recuperação, e ela é justamente a que multiplica tudo. Por isso eu peguei o piso.
+
+Mais R$ 2.500 de proposta que morre no silêncio. Total: R$ 10.900 por mês. R$ 130 mil por ano.
+
+E eu preciso ser honesto sobre o tamanho da minha incerteza: essa faixa vai de R$ 10.900 a R$ 29.200. Eu estou te apresentando a ponta de baixo. Fechar essa faixa é a primeira coisa que o plano entrega.
+
+[SE CONTESTAR 'de onde saiu esse 10%'] Saiu de mim, não de você — é estimativa, e está escrito aí. Se você me disser agora que acha que dá 5%, eu refaço aqui: 40 vezes 5% dá 2 leads, vezes 35% dá 0,7 contrato, vezes R$ 6 mil dá R$ 4.200 por mês. Continua sendo R$ 50 mil por ano. Quer que eu use 5%?">
+  <div class="stage">
+    <h2><em>R$ 10.900</em> de margem por mês escapam de dinheiro que já entrou no seu funil</h2>
+    <div class="split split-w" style="margin-bottom:1.35rem">
+      <div class="grid" style="gap:.6rem">
+        <div class="row" style="background:var(--amber); color:#fff">
+          <span class="rk" style="font-weight:600">trecho lead → proposta</span>
+          <span class="rv">R$ 8.400/mês</span>
+        </div>
+        <div class="row">
+          <span class="rk">propostas que morrem no silêncio</span>
+          <span class="rv">R$ 2.500/mês</span>
+        </div>
+      </div>
+      <div class="solid" style="text-align:center">
+        <p class="tag" style="color:var(--on-dark-muted)">Total conservador</p>
+        <div class="num n-lg">R$ 10.900</div>
+        <p class="small" style="color:var(--on-dark-muted); margin:.2rem 0 .4rem">por mês</p>
+        <p class="num n-md amber" style="margin:0">R$ 130.800 / ano</p>
+      </div>
+    </div>
+    <div class="panel-line">
+      <p class="small tnum" style="font-weight:600; margin-bottom:.5rem">40 leads &nbsp;×&nbsp; 10% recuperáveis &nbsp;×&nbsp; 35% de fechamento &nbsp;×&nbsp; R$ 6.000 de margem &nbsp;=&nbsp; R$ 8.400</p>
+      <p class="xsmall muted" style="margin:0">Cenário mais conservador dos três. Faixa real: R$ 10.900 a R$ 29.200/mês. Três dos quatro fatores são dados seus — o único que estimei foi a taxa de recuperação, e é justamente ela que multiplica tudo. Por isso peguei o piso.</p>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>estimativa · confiança baixa-média · projeção, não promessa contratual</p>
+</section>
+
+<!-- ============ 7 ============ -->
+<section class="slide dark" data-notes="[ESTE É O SLIDE QUE DECIDE A VENDA. SE VOCÊ SOMAR OS DOIS NÚMEROS EM QUALQUER MOMENTO DA REUNIÃO, O DONO DERRUBA TUDO.]
+
+Aqui é onde eu podia te enganar e não vou.
+
+Você tem meta de R$ 300 mil e faz R$ 140 mil. Faltam R$ 160 mil de faturamento por mês, que na sua margem de 30% são R$ 48 mil de margem. Por ano, R$ 576 mil.
+
+Agora presta atenção: isso NÃO SOMA com os R$ 10.900 do slide anterior. Se eu somasse, eu ia te falar em R$ 58.900 por mês, e você ia me derrubar em trinta segundos dizendo 'isso é mais do que eu deixei de faturar'. E você estaria certo.
+
+Os R$ 48 mil são o buraco inteiro. Os R$ 10.900 estão DENTRO dele. Recuperar os R$ 10.900 diminui os R$ 48 mil, não empilha em cima.
+
+A leitura certa é essa aqui na caixa: você perde R$ 10.900 por mês de dinheiro que já está dentro da sua casa. E deixa de fazer outros R$ 37.100 por mês que nunca chegaram a entrar, porque não tem quem venda.
+
+[SE CONTESTAR 'esses R$ 48 mil não são perda, é meta minha'] Concordo, e por isso eu não chamo de perda no mesmo lugar que o outro. Não é dinheiro que escapou — é dinheiro que nunca chegou. Eu coloco os dois no mesmo slide justamente para você ver que eles não se somam.">
+  <div class="stage">
+    <p class="eyebrow">O slide que você precisa me segurar</p>
+    <h2>R$ 10.900 + R$ 48.000 <em>não dá</em> R$ 58.900. Um está dentro do outro.</h2>
+    <figure>
+      <svg viewBox="0 0 900 190" role="img" aria-label="Uma barra de R$ 48.000 por mês, o total que falta para a meta, contendo à sua esquerda um segmento de R$ 10.900 que vaza do funil e, à direita, R$ 37.100 que nunca chegaram a entrar.">
+        <rect x="0" y="30" width="900" height="88" rx="6" fill="#243140"/>
+        <rect x="0" y="30" width="204" height="88" rx="6" fill="#E07A31"/>
+        <text x="102" y="68" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-size="24" font-weight="700">R$ 10.900</text>
+        <text x="102" y="94" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-size="13">vaza do que já entrou</text>
+        <text x="552" y="68" text-anchor="middle" fill="#fff" font-family="Archivo,sans-serif" font-size="24" font-weight="700">R$ 37.100</text>
+        <text x="552" y="94" text-anchor="middle" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="13">nunca chegou a entrar</text>
+        <line x1="0" y1="140" x2="900" y2="140" stroke="#33445A" stroke-width="1"/>
+        <text x="450" y="164" text-anchor="middle" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="14">R$ 48.000 / mês — tudo o que falta para a meta</text>
+        <text x="0" y="18" fill="#E07A31" font-family="Archivo,sans-serif" font-size="12" font-weight="600" letter-spacing="1.5">DENTRO</text>
+      </svg>
+      <figcaption style="max-width:none">Recuperar os R$ 10.900 <strong>reduz</strong> o buraco de R$ 48.000. Não se acumula a ele.</figcaption>
+    </figure>
+    <div class="solid" style="margin-top:1.5rem; text-align:center">
+      <p class="lede" style="font-weight:600; margin:0; max-width:none">“Eu perco R$ 10.900 do que já está dentro de casa.<br>E deixo de fazer outros R$ 37.100 que nunca entraram.”</p>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>gap da meta = R$ 300.000 − R$ 140.000 = R$ 160.000 de faturamento × 30% de margem = R$ 48.000/mês · R$ 576.000/ano · aritmética sobre dados informados, confiança alta</p>
+</section>
+
+<!-- ============ 8 ============ -->
+<section class="slide" data-notes="Se você chamar mais três empresas para essa conversa, duas vão te vender isso aqui.
+
+A primeira é velocidade de resposta. 'Responda em um minuto.' Eu calculei o que os seus 10 minutos custam: R$ 950 por mês. É o menor número do meu diagnóstico inteiro. A gente vai arrumar isso porque vem junto e é barato, mas dez minutos não derruba dois terços de um funil. Quem te vender velocidade como a solução da LEOSOL está vendendo a coisa errada.
+
+A segunda é follow-up. Na maioria das integradoras, é a maior perda. NA SUA NÃO É — e eu prefiro te falar isso antes de você descobrir sozinho. Você só perde 13 propostas por mês. Cadência perfeita em cima de 13 propostas rende R$ 2.500. É pouco.
+
+Eu recomendo mesmo assim, mas no dia 31 e pelo motivo certo: é infraestrutura para quando suas propostas dobrarem, e é o que finalmente vai colocar seu pedido de indicação num sistema em vez de na sua memória.
+
+[SE CONTESTAR 'então por que você está me cobrando por isso'] Boa. Se na call você me disser que já faz cadência hoje, esse componente cai de preço ou sai do mês 1. Está escrito na proposta, na seção de riscos. Eu não vou cobrar por consertar o que já está consertado.">
+  <div class="stage">
+    <h2>Duas coisas que eu <em>não</em> vou te vender</h2>
+    <div class="split">
+      <div class="panel">
+        <p class="small muted" style="font-style:italic; margin-bottom:.5rem">✕ &nbsp;“responda mais rápido”</p>
+        <div class="num n-lg">R$ 950</div>
+        <p class="small muted" style="margin:.2rem 0 .9rem">por mês</p>
+        <p class="small">Você já responde em 10 minutos. Dez minutos não derruba dois terços de um funil.</p>
+        <p class="xsmall amber" style="font-weight:600; margin:.7rem 0 0">Já está dentro dos R$ 8.400 — não somar por fora.</p>
+      </div>
+      <div class="panel">
+        <p class="small muted" style="font-style:italic; margin-bottom:.5rem">✕ &nbsp;“faça follow-up”</p>
+        <div class="num n-lg">R$ 2.500</div>
+        <p class="small muted" style="margin:.2rem 0 .9rem">por mês</p>
+        <p class="small">Você só perde 13 propostas por mês. Cadência perfeita em cima de 13 rende pouco.</p>
+        <p class="xsmall amber" style="font-weight:600; margin:.7rem 0 0">É o número mais frágil do diagnóstico. Contraria o padrão do setor — e eu digo isso antes de você descobrir.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>os R$ 2.500 valem <em>se</em> não houver cadência hoje — o que não foi informado. Não estou afirmando que a LEOSOL não faz follow-up.</p>
+</section>
+
+<!-- ============ 9 ============ -->
+<section class="slide" data-notes="Essa aqui eu não consegui medir, e por isso não coloquei em nenhum total. Mas eu preciso te mostrar.
+
+Você perde por preço — foi o único motivo de perda que você me deu. Se perde por preço, é quase certo que dá desconto. E você não sabe quanto dá, em média, porque isso não é registrado.
+
+Então eu não chutei o seu desconto. Eu fiz a régua e VOCÊ preenche: cada ponto percentual de desconto médio nas suas 7 vendas custa R$ 1.400 de margem por mês. R$ 16.800 por ano. Por ponto.
+
+Se o seu desconto médio for 8%, ele te custa R$ 11.200 por mês — mais do que todo o vazamento do funil que eu calculei.
+
+[PERGUNTAR E CALAR A BOCA] Das suas últimas 7 vendas, em quantas você mexeu no preço? E quanto, mais ou menos?
+
+[SE CONTESTAR 'eu quase não dou desconto'] Perfeito, então isso vira zero e a gente segue. E tem uma razão para isso ser urgente mesmo se for zero: hoje quem dá desconto é você, e você sente cada real no bolso. No dia em que entrar um vendedor, isso deixa de ser verdade. A regra de comissão precisa estar escrita antes desse dia, não depois.">
+  <div class="stage">
+    <h2>Cada 1% de desconto médio custa <em>R$ 1.400</em> de margem por mês</h2>
+    <div class="split split-w">
+      <div class="grid" style="gap:.5rem">
+        <div class="row"><span class="rk">desconto de 3%</span><span class="rv">R$ 4.200 / mês</span></div>
+        <div class="row"><span class="rk">desconto de 5%</span><span class="rv">R$ 7.000 / mês</span></div>
+        <div class="row hi"><span class="rk" style="font-weight:600">desconto de 8%</span><span class="rv amber">R$ 11.200 / mês</span></div>
+        <div class="row"><span class="rk">desconto de 10%</span><span class="rv">R$ 14.000 / mês</span></div>
+      </div>
+      <div class="panel">
+        <p class="lede" style="font-weight:600; margin-bottom:.7rem">Se for 8%, isso sozinho é maior que toda a perda do funil.</p>
+        <p class="num n-md amber tnum" style="margin:0 0 .8rem">R$ 11.200 &gt; R$ 10.900</p>
+        <p class="small muted">Uma coisa que eu não consigo medir pode ser maior que tudo que eu medi. Você é a única pessoa que pode fechar esse número.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>aritmética pura sobre dados informados — R$ 20.000 × 30% de margem × 7 vendas/mês · confiança <strong>alta na conta, nenhuma na frequência</strong>: o desconto médio da LEOSOL não foi informado e eu não estimei</p>
+</section>
+
+<!-- ============ 10 ============ -->
+<section class="slide" data-notes="Sua meta são R$ 300 mil, que são 15 contratos por mês. Hoje você faz 7.
+
+Com as suas taxas de hoje, 15 contratos exigem 129 leads por mês. Você tem 60. Ou seja: você precisaria mais que dobrar a entrada, numa empresa que vive de indicação — e indicação não se compra para bater setembro. É inviável, e eu acho que você já sabia disso.
+
+Agora, com o meio do funil arrumado, os mesmos 15 contratos pedem 75 leads. Quinze a mais do que já entram na sua porta.
+
+Essa é a diferença entre 'eu preciso de uma máquina de leads que eu não tenho' e 'eu preciso de um quarto a mais de leads e de um processo que não deixe dois terços caírem no caminho'. É por isso que arrumar o processo primeiro é o que deixa o marketing barato depois.
+
+[SE CONTESTAR 'essas taxas corrigidas são chute seu'] São projeção, e está escrito ali. Eu subi lead-para-proposta de 33 para 50 e proposta-para-contrato de 35 só para 40 — repara que na etapa em que você já é bom eu quase não mexi, de propósito. Se você achar 50 otimista, me dá o número que você acredita e eu recalculo os leads necessários aqui na sua frente.">
+  <div class="stage">
+    <h2>Para bater a meta hoje você precisa de 129 leads por mês. <em>Com o funil arrumado, 75.</em></h2>
+    <div class="split split-w">
+      <figure>
+        <svg viewBox="0 0 460 250" role="img" aria-label="Duas barras comparando os leads mensais necessários para 15 contratos: 129 leads com as taxas de hoje e 75 leads com o funil corrigido, ambas medidas contra a linha dos 60 leads que a empresa já recebe.">
+          <line x1="0" y1="90" x2="460" y2="90" stroke="#20675A" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text x="0" y="82" fill="#20675A" font-family="Archivo,sans-serif" font-size="12" font-weight="600">60 leads — o que você já tem</text>
+          <rect x="40" y="20" width="110" height="190" rx="4" fill="#243140"/>
+          <text x="95" y="12" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="22" font-weight="700">129</text>
+          <text x="95" y="230" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="13" font-weight="600">hoje</text>
+          <text x="95" y="246" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="11">+115% · mais que dobrar</text>
+          <rect x="270" y="99" width="110" height="111" rx="4" fill="#E07A31"/>
+          <text x="325" y="91" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="22" font-weight="700">75</text>
+          <text x="325" y="230" text-anchor="middle" fill="currentColor" font-family="Archivo,sans-serif" font-size="13" font-weight="600">com o funil arrumado</text>
+          <text x="325" y="246" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="11">+15 leads · +25%</text>
+        </svg>
+      </figure>
+      <div class="panel">
+        <p class="tag">A diferença</p>
+        <p class="lede" style="font-weight:600; margin-bottom:.8rem">Entre “preciso de uma máquina de leads que eu não tenho” e “preciso de um quarto a mais de leads”.</p>
+        <p class="small muted" style="margin-bottom:.8rem">Indicação não se compra para bater setembro. Dobrar a entrada num negócio que vive de indicação é inviável — e você já sabia disso.</p>
+        <p class="small amber" style="font-weight:600; margin:0">Arrumar o processo primeiro é o que deixa o marketing barato depois.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>15 contratos/mês = R$ 300.000 · taxas corrigidas: lead→proposta de 33,3% para 50%, proposta→contrato de 35% para 40% · <strong>projeção</strong> de confiança baixa-média, não promessa contratual</p>
+</section>
+
+<!-- ============ 11 ============ -->
+<section class="slide dark" data-notes="Esse é o slide que eu podia ter tirado do deck, e é o que eu mais faço questão de mostrar.
+
+Mesmo no meu cenário mais OTIMISTA — não o provável, o otimista — arrumar o seu funil leva a LEOSOL para uns R$ 237 mil por mês. A meta é R$ 300 mil. Falta um pedaço, e esse pedaço não é processo.
+
+O motivo é aritmético: mesmo com as taxas corrigidas, 15 contratos pedem 38 propostas por mês. Sua agenda comporta 20. Nenhum sistema do mundo faz uma pessoa apresentar 38 propostas por mês.
+
+Então a meta pede três coisas juntas: processo, um quarto a mais de leads, e mais um par de mãos vendendo. Eu ataco a primeira agora, preparo a segunda e forço você a decidir a terceira com número na mão, no mês dois.
+
+Quem te vender R$ 300 mil com software está te vendendo mentira. Eu prefiro perder a venda a te prometer isso.
+
+[SE PERGUNTAR 'então para que eu faço isso'] Para sair de R$ 140 mil e ir para uma faixa de R$ 180 a R$ 208 mil em 90 dias, sem comprar um lead a mais. E para descobrir, com número, exatamente quanta gente e quantos leads faltam para o resto — que hoje você não sabe. Contratar vendedor sem saber isso é a decisão mais cara que você pode tomar este ano.">
+  <div class="stage">
+    <h2>Arrumar o funil te leva a ~R$ 237 mil. <em>Não a R$ 300 mil.</em></h2>
+    <figure>
+      <svg viewBox="0 0 900 175" role="img" aria-label="Régua de faturamento mensal de R$ 140 mil hoje até a meta de R$ 300 mil, com o cenário conservador em R$ 176 mil e o otimista em R$ 237 mil; o trecho final entre R$ 237 mil e a meta é marcado como o que exige mais gente vendendo e mais leads.">
+        <line x1="20" y1="60" x2="880" y2="60" stroke="#33445A" stroke-width="3"/>
+        <circle cx="20" cy="60" r="7" fill="#243140" stroke="#9FB0C0" stroke-width="2"/>
+        <text x="20" y="40" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="16" font-weight="700">R$ 140 mil</text>
+        <text x="20" y="86" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="12">hoje</text>
+        <circle cx="261" cy="60" r="7" fill="#243140" stroke="#9FB0C0" stroke-width="2"/>
+        <text x="261" y="40" text-anchor="middle" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="16" font-weight="700">R$ 176 mil</text>
+        <text x="261" y="86" text-anchor="middle" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="12">conservador</text>
+        <circle cx="588" cy="60" r="7" fill="#E07A31" stroke="#E07A31" stroke-width="2"/>
+        <text x="588" y="40" text-anchor="middle" fill="#E07A31" font-family="Archivo,sans-serif" font-size="16" font-weight="700">R$ 237 mil</text>
+        <text x="588" y="86" text-anchor="middle" fill="#E07A31" font-family="Archivo,sans-serif" font-size="12">otimista</text>
+        <circle cx="880" cy="60" r="7" fill="#fff" stroke="#fff" stroke-width="2"/>
+        <text x="880" y="40" text-anchor="end" fill="#fff" font-family="Archivo,sans-serif" font-size="16" font-weight="700">R$ 300 mil</text>
+        <text x="880" y="86" text-anchor="end" fill="#9FB0C0" font-family="Archivo,sans-serif" font-size="12">meta</text>
+        <rect x="588" y="116" width="292" height="4" rx="2" fill="#E07A31"/>
+        <text x="734" y="145" text-anchor="middle" fill="#E07A31" font-family="Archivo,sans-serif" font-size="13" font-weight="600">esse pedaço exige mais um par de mãos vendendo</text>
+        <text x="734" y="163" text-anchor="middle" fill="#E07A31" font-family="Archivo,sans-serif" font-size="13" font-weight="600">e +25% de leads. Software nenhum resolve.</text>
+      </svg>
+    </figure>
+    <div class="solid" style="margin-top:1.4rem; text-align:center">
+      <p class="lede" style="font-weight:600; margin:0; max-width:none">A meta pede 38 propostas por mês. Sua agenda comporta 20.</p>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>cenário otimista do funil corrigido = 11,9 contratos/mês × R$ 20.000 · projeção de confiança baixa-média, não promessa contratual</p>
+</section>
+
+<!-- ============ 12 ============ -->
+<section class="slide" data-notes="Isso não é argumento de vendedor, é conta de luz. A CPFL subiu 18,75% na alta tensão em abril, 9,15% na baixa, e foi a quarta alta nos últimos seis reajustes. Isso é motivo REAL para você ligar para todo orçamento antigo que está parado na sua gaveta — não é 'oi, viu minha mensagem'.
+
+E olha o resto do slide. Eu olhei sete concorrentes seus em Franca. Nenhum publica prazo de instalação. Nenhum publica garantia detalhada. Nenhum publica simulação de financiamento com taxa real. Nenhum promete tempo de resposta.
+
+Você tem seis anos de obra entregue e responde em dez minutos. E ninguém em Franca sabe disso. Dizer em voz alta o que já é verdade é a coisa mais barata do mapa inteiro.
+
+E as duas franquias nacionais que estão aqui têm nota pública fraca. Quando o concorrente grande tem nota baixa, você não briga por preço. Briga por confiança.
+
+[SE CONTESTAR 'mas eu não vendo para indústria'] E eu não estou te propondo isso agora. Franca tem 650 fábricas de calçado e a conta delas subiu 18,75% — isso é uma oportunidade real e eu deixei mapeada. Mas é ciclo de 60 a 90 dias, material técnico que você não tem, e uma agenda que já não dá conta do residencial que você SABE vender. Fica guardado para depois dos 90 dias.">
+  <div class="stage">
+    <h2>A CPFL subiu a alta tensão em <em>18,75%</em> em abril. É a quarta alta em seis reajustes.</h2>
+    <div class="split split-w">
+      <figure>
+        <svg viewBox="0 0 440 170" role="img" aria-label="Seis reajustes da CPFL Paulista desde 2021: quatro de alta, uma queda em 2025 e a alta de abril de 2026, a maior do período, com mais 18,75% na alta tensão.">
+          <line x1="0" y1="110" x2="440" y2="110" stroke="#D8E0E8" stroke-width="2"/>
+          <rect x="14" y="70" width="42" height="40" fill="#243140"/><text x="35" y="132" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="12">2021</text>
+          <rect x="84" y="70" width="42" height="40" fill="#243140"/><text x="105" y="132" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="12">2022</text>
+          <rect x="154" y="70" width="42" height="40" fill="#243140"/><text x="175" y="132" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="12">2023</text>
+          <rect x="224" y="70" width="42" height="40" fill="#243140"/><text x="245" y="132" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="12">2024</text>
+          <rect x="294" y="110" width="42" height="28" fill="#C7CFD8"/><text x="315" y="158" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="12">2025</text>
+          <rect x="364" y="32" width="42" height="78" fill="#E07A31"/><text x="385" y="132" text-anchor="middle" fill="#5C6B7A" font-family="Archivo,sans-serif" font-size="12">2026</text>
+          <text x="385" y="22" text-anchor="middle" fill="#C05F17" font-family="Archivo,sans-serif" font-size="14" font-weight="700">+18,75%</text>
+        </svg>
+        <figcaption>Quatro altas em seis reajustes desde 2021. Isso não é argumento de vendedor — é conta de luz.</figcaption>
+      </figure>
+      <div class="panel">
+        <p class="tag">O que nenhum dos 7 concorrentes publica</p>
+        <ul class="plain">
+          <li>prazo de instalação</li>
+          <li>garantia detalhada</li>
+          <li>simulação de financiamento real</li>
+          <li>promessa de tempo de resposta</li>
+        </ul>
+        <p class="small amber" style="font-weight:600; margin:.9rem 0 .6rem">Você tem os quatro, há 6 anos. E ninguém em Franca sabe disso.</p>
+        <p class="xsmall muted" style="margin:0">As duas franquias nacionais aqui têm nota pública fraca. Quando o concorrente grande tem nota baixa, você não briga por preço. Briga por confiança.</p>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>reajuste homologado pela ANEEL para a CPFL Paulista, abril/2026, efeito médio +12,13% · levantamento de concorrentes de 07/09/2026 · SolarPrime 6,62/10 e Ilumisol 3,0/5 no Reclame Aqui (redes nacionais)</p>
+</section>
+
+<!-- ============ 13 ============ -->
+<section class="slide" data-notes="Três coisas, nessa ordem, e uma quarta que fica trancada.
+
+No dia 1 entram duas: a mentoria comercial e o atendimento do seu WhatsApp. As duas juntas, porque uma não funciona sem a outra.
+
+No dia 31 entra a cadência de proposta — aquela que eu te disse que vale pouco hoje e é infraestrutura para depois.
+
+E a geração de leads NÃO ENTRA AGORA. Ela tem um gatilho escrito, com número: só quando lead-para-proposta bater 45% por dois meses seguidos. Enquanto dois terços do que entra some, cada real que você põe em anúncio entrega um terço do que poderia.
+
+E olha a faixa de baixo, porque proposta que recomenda tudo não é recomendação, é catálogo. Mídia paga: não. Fábrica de calçado: não agora. Site novo: não antes de a gente confirmar o que você já tem. E não contrata vendedor antes de a regra de comissão estar escrita — isso depois só se resolve com briga.
+
+[PERGUNTAR] Se essas 20 propostas por mês virassem 30, o que quebra primeiro na sua operação — a obra, a homologação, ou você?
+
+[SE CONTESTAR 'eu queria mais leads, é para isso que te chamei'] Eu sei, e por isso que eu não vou te vender isso hoje. Você tem 60 leads e perde 40. Se eu te trouxer 60 novos, você perde 40 novos e me paga por isso. Vou te dar o gatilho por escrito: no dia em que lead-para-proposta estiver em 45% por dois meses, eu mesmo trago a proposta de geração.">
+  <div class="stage">
+    <h2>Primeiro medir e decidir. Depois converter. <em>Escalar por último.</em></h2>
+    <div class="grid g3" style="margin-bottom:1.4rem">
+      <div class="solid">
+        <p class="tag" style="color:var(--amber-bright)">Dia 1</p>
+        <p class="lede" style="font-weight:600; margin:0">Mentoria Comercial + atendimento e qualificação no WhatsApp</p>
+      </div>
+      <div class="panel">
+        <p class="tag">Dia 31</p>
+        <p class="lede" style="font-weight:600; margin:0">Cadência pós-proposta</p>
+      </div>
+      <div class="panel-line">
+        <p class="tag">Dia 61+</p>
+        <p class="lede" style="font-weight:600; margin:0 0 .4rem">Geração de leads</p>
+        <p class="xsmall amber" style="margin:0; font-weight:600">só com gatilho: lead→proposta ≥ 45% por 2 meses</p>
+      </div>
+    </div>
+    <div class="panel">
+      <p class="tag" style="color:var(--amber)">Fica de fora do mês 1</p>
+      <p class="lede" style="font-weight:600; margin:0 0 .5rem">mídia paga · nicho calçadista · site novo · contratar vendedor antes de a comissão estar escrita</p>
+      <p class="small muted" style="margin:0; font-style:italic">Proposta que recomenda tudo não é recomendação, é catálogo.</p>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>regra que define a ordem — não se coloca tráfego num funil que não converte · processo primeiro, escala depois</p>
+</section>
+
+<!-- ============ 14 ============ -->
+<section class="slide" data-notes="Isso aqui é a parte que NÃO é software e é a que mais vale.
+
+Toda segunda-feira, meia hora, mesma hora, você senta com essa ficha preenchida na frente. Sete linhas. E responde cinco perguntas: estou no ritmo da meta? qual etapa está abaixo? qual o principal motivo de perda? quem precisa de treino? o que a gente testa esta semana? E ninguém levanta sem uma ação, um responsável e uma data.
+
+Hoje esses sete números moram na sua cabeça, e três deles não moram nem lá.
+
+Junto com isso vem duas decisões que eu não tomo por você, mas eu desenho: a política de desconto escrita, com teto e com o que se pede em troca; e a regra de comissão calculada sobre margem, não sobre faturamento. As duas prontas até o dia 30, antes de existir vendedor. Corrigir isso depois não é ajuste, é conflito.
+
+Eu preciso de 30 minutos seus por semana. Sem remarcar. É o item que mais derruba programa como esse, e não tem substituto.
+
+[SE CONTESTAR 'não tenho meia hora por semana'] Então eu prefiro que a gente não comece. Falo sério. Sem essa meia hora, o resto vira ferramenta ligada sem ninguém olhando, e daqui a três meses você me chama para dizer que não funcionou — com razão. Meia hora por semana é 2 horas por mês, contra as 17 horas por mês que a gente estima que você gasta hoje triando lead que não vira proposta.">
+  <div class="stage">
+    <h2>Toda segunda, 30 minutos, <em>sete números</em> na sua frente</h2>
+    <div class="split split-w">
+      <div class="panel">
+        <p class="tag">Ficha semanal</p>
+        <div class="grid" style="gap:.42rem">
+          <div class="small" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:.3rem">leads <span style="color:var(--fg-faint)">—</span></div>
+          <div class="small amber" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--amber); padding-bottom:.3rem; font-weight:600">qualificados <span>—</span></div>
+          <div class="small amber" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--amber); padding-bottom:.3rem; font-weight:600">diagnósticos <span>—</span></div>
+          <div class="small" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:.3rem">propostas <span style="color:var(--fg-faint)">—</span></div>
+          <div class="small" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:.3rem">vendas <span style="color:var(--fg-faint)">—</span></div>
+          <div class="small" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:.3rem">conversão <span style="color:var(--fg-faint)">—</span></div>
+          <div class="small" style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border); padding-bottom:.3rem">principal motivo de perda <span style="color:var(--fg-faint)">—</span></div>
+        </div>
+        <p class="xsmall amber" style="font-weight:600; margin:.9rem 0 0">três destes sete não existem hoje em lugar nenhum, nem na sua cabeça</p>
+      </div>
+      <div class="grid" style="gap:1rem; align-content:start">
+        <div class="solid">
+          <p class="small" style="color:var(--on-dark-muted); margin-bottom:.3rem">Sai da reunião com</p>
+          <p class="num n-md" style="margin:0 0 .4rem">1 ação · 1 responsável · 1 data</p>
+          <p class="xsmall amber" style="font-weight:600; margin:0">Ninguém levanta sem as três.</p>
+        </div>
+        <div class="panel-line">
+          <p class="tag">E duas decisões até o dia 30</p>
+          <ul class="plain small">
+            <li>Política de desconto escrita, com teto</li>
+            <li>Comissão sobre margem, não sobre faturamento</li>
+          </ul>
+          <p class="xsmall muted" style="margin:.7rem 0 0">Antes de existir vendedor. Corrigir depois não é ajuste, é conflito.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>componente: Mentoria Comercial · entra no dia 1 · a reunião semanal é KPI de primeira classe: 4 de 4</p>
+</section>
+
+<!-- ============ 15 ============ -->
+<section class="slide" data-notes="Hoje todo lead cai direto no seu celular. Não tem filtro entre 'curioso' e 'pronto'.
+
+O que muda: todo lead que chegar — WhatsApp, formulário, telefone, dez da noite de domingo inclusive — é respondido em menos de um minuto. A primeira coisa que ele pede é a foto da conta de luz, que sozinha resolve consumo, endereço, titularidade e tipo de ligação sem o cara ter que digitar nada.
+
+Se a conta não vier, ele confere oito coisas, uma pergunta por vez. E para na hora em que algo elimina o lead — se não é o titular, se é apartamento sem telhado, se está fora do seu raio, a conversa acaba ali E FICA REGISTRADO O PORQUÊ.
+
+Aí você não recebe mais 60 conversas. Recebe uma lista dividida: A é quente e vai para a sua mesa em 24 horas. B é morno, entra em 48 a 72 horas. C não entra na sua agenda agora.
+
+E aqui está a parte que vale mais que tudo: esse registro é o que acende a luz nas três etapas cegas. No dia 30, pela primeira vez em 6 anos, você vai saber onde os 40 leads morrem. Aquela faixa de R$ 8.400 a R$ 21.000 vira UM número. Esse é o entregável do primeiro mês — não é faturamento. É enxergar.
+
+[SE CONTESTAR 'meu cliente vai perceber que não sou eu respondendo'] Vai perceber que foi respondido rápido e que quem respondeu foi direto ao ponto. E na primeira coisa que exigir você — objeção, negociação, visita — é você que entra, do mesmo jeito de sempre. Diagnóstico, apresentação e fechamento continuam 100% seus. Isso não fecha venda nenhuma. Isso te entrega o cara pronto para você fechar.">
+  <div class="stage">
+    <h2>Você para de receber 60 conversas e passa a receber <em>oportunidades prontas</em></h2>
+    <div class="split" style="margin-bottom:1.3rem">
+      <div class="panel">
+        <p class="tag">Hoje</p>
+        <ul class="plain small muted">
+          <li>60 conversas caem no seu celular</li>
+          <li>você tria todas</li>
+          <li>10 min de resposta, em média</li>
+          <li>nada fica registrado</li>
+        </ul>
+      </div>
+      <div class="solid">
+        <p class="tag" style="color:var(--amber-bright)">Com o programa</p>
+        <ul class="plain small">
+          <li>resposta em menos de 1 minuto, 22h de domingo inclusive</li>
+          <li>pede a conta de luz na primeira mensagem</li>
+          <li>8 critérios conferidos, uma pergunta por vez</li>
+          <li>chega na sua mesa dividido em A, B e C</li>
+          <li>todo lead com etapa e motivo registrados</li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel" style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:center">
+      <p class="lede" style="font-weight:600; margin:0">~17 horas/mês de volta na sua agenda ≈ 8 propostas</p>
+      <p class="small amber" style="font-weight:600; margin:0">E o registro acende a luz nas três etapas cegas.</p>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>as 17 horas são <strong>estimativa nossa, não medição</strong> — confiança baixa, e é a primeira coisa que a gente confere na call · componente: atendimento e qualificação · entra no dia 1</p>
+</section>
+
+<!-- ============ 16 ============ -->
+<section class="slide" data-notes="[LEVAR ESTE SLIDE PREENCHIDO. NENHUM PREÇO PODE SER INVENTADO NA SALA. Se o preço não estiver definido até a reunião, deixar 'preencher' na tela e dizer: 'o valor eu te trago junto com os números fechados, depois da call' — é coerente com o resto do fecho.]
+
+A conta é simples e você confere sozinho: investimento por mês dividido pela margem que volta por mês.
+
+E eu vou usar o número mais pessimista que eu tenho, os R$ 10.900. Não os R$ 17 mil do cenário provável, não os R$ 29 mil do otimista. O piso.
+
+Então: enquanto o investimento mensal ficar abaixo de R$ 10.900, isso se paga dentro do próprio mês. Se for metade disso, se paga em quinze dias e volta duas vezes. Se for um terço, dez dias.
+
+E repara no que eu DEIXEI FORA dessa conta de propósito: não tem um real dos R$ 48 mil da meta, porque este plano sozinho não entrega isso. E não tem nada da política de desconto, que pode valer R$ 5.600 por mês se o seu desconto médio for 8% e a gente derrubar para 4%.
+
+A comparação que interessa não é com zero. É com o que já está saindo: R$ 130 mil por ano vazando, 480 leads por ano que entram e somem sem deixar rastro.
+
+[SE CONTESTAR 'está caro'] Caro comparado a quê? Se for comparado a outra proposta, me mostra que eu comparo linha a linha. Se for comparado ao que a LEOSOL fatura, aí eu te peço para comparar com o que SAI: R$ 10.900 por mês vão embora hoje, no meu número mais conservador. E tem uma linha que dinheiro nenhum recupera depois — o histórico que você não mediu não volta.">
+  <div class="stage">
+    <h2>Enquanto o investimento ficar abaixo de <em>R$ 10.900</em> por mês, ele se paga dentro do próprio mês</h2>
+    <div class="split split-w">
+      <div class="grid" style="gap:.5rem">
+        <div class="row"><span class="rk">Mentoria Comercial <span class="muted xsmall">· dia 1</span></span><span class="rv amber" style="font-style:italic; font-weight:400; font-size:.9rem">‹preencher›</span></div>
+        <div class="row"><span class="rk">Atendimento e qualificação <span class="muted xsmall">· dia 1</span></span><span class="rv amber" style="font-style:italic; font-weight:400; font-size:.9rem">‹preencher›</span></div>
+        <div class="row"><span class="rk">Cadência pós-proposta <span class="muted xsmall">· dia 31</span></span><span class="rv amber" style="font-style:italic; font-weight:400; font-size:.9rem">‹preencher›</span></div>
+        <div class="row hi"><span class="rk" style="font-weight:600">Total mensal</span><span class="rv amber" style="font-style:italic; font-weight:400; font-size:.9rem">‹preencher›</span></div>
+      </div>
+      <div class="panel">
+        <p class="tag">O que já sai hoje</p>
+        <div class="num n-lg amber">R$ 10.900</div>
+        <p class="small muted" style="margin:.3rem 0 .8rem">por mês, no cenário mais conservador</p>
+        <p class="small" style="font-weight:600">Sem contar um real dos R$ 48 mil da meta. Sem contar nada da política de desconto.</p>
+      </div>
+    </div>
+    <div class="panel-line" style="margin-top:1.2rem">
+      <p class="small" style="font-weight:600; margin:0">Se for metade disso, se paga em 15 dias. Se for um terço, em 10. A comparação não é com zero — é com o que já está saindo.</p>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>payback = investimento mensal ÷ R$ 10.900 de margem recuperada no cenário conservador · projeção, não promessa contratual · <strong>nenhum preço foi inventado</strong></p>
+</section>
+
+<!-- ============ 17 ============ -->
+<section class="slide" data-notes="No primeiro mês eu NÃO te prometo faturamento. Prometo R$ 140 mil, o mesmo de hoje. O que o mês 1 entrega é enxergar e decidir: as três etapas com número, o desconto escrito, a comissão definida, a resposta abaixo de cinco minutos medida — não estimada.
+
+No mês 2 a gente corrige o ponto que a medição apontar. E aqui tem uma coisa importante: a correção MUDA conforme o número. Se der que os 40 leads morriam sem contato, é uma coisa. Se der que não tinham perfil, o problema é de origem de lead e eu troco a prioridade do mês 2 na sua frente, com o número na mesa. Está escrito na proposta.
+
+No mês 3, faixa de R$ 180 a R$ 208 mil, e aí a gente decide juntos se abre a torneira de leads.
+
+Tudo isso é projeção, não é promessa de contrato. E tudo é conferível na ficha toda segunda-feira. Se em quatro semanas não tiver melhorado nada, você vai ver isso antes de mim.
+
+[SE CONTESTAR 'e se não der resultado'] Você vai saber antes do dia 30, e vai saber por número, não por sensação. Essa é a diferença. Hoje, se as suas vendas caírem, você não consegue nem dizer se foi entrada de lead, qualificação ou proposta. A partir do dia 30, consegue. E se o programa não estiver entregando, o mesmo painel que mostra isso está na sua mão para me cobrar.">
+  <div class="stage">
+    <h2>Mês 1 não promete faturamento. <em>Promete enxergar.</em></h2>
+    <div class="grid g3" style="margin-bottom:1.3rem">
+      <div>
+        <div class="solid" style="border-radius:10px 10px 0 0; padding:.7rem 1.2rem">
+          <p class="tag" style="color:var(--amber-bright); margin:0">Dias 1–30 · medir e decidir</p>
+        </div>
+        <div class="panel" style="border-radius:0 0 10px 10px">
+          <ul class="plain small">
+            <li>manter R$ 140 mil</li><li>3 etapas com número</li>
+            <li>desconto e comissão escritos</li><li>resposta &lt; 5 min</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--ink-3); color:var(--on-dark); border-radius:10px 10px 0 0; padding:.7rem 1.2rem">
+          <p class="tag" style="color:var(--on-dark-muted); margin:0">Dias 31–60 · converter</p>
+        </div>
+        <div class="panel" style="border-radius:0 0 10px 10px">
+          <ul class="plain small">
+            <li>R$ 150 a 176 mil</li><li>lead→proposta ≥ 42%</li>
+            <li>100% das perdas com motivo</li><li>decisão sobre capacidade</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style="background:var(--amber); color:#fff; border-radius:10px 10px 0 0; padding:.7rem 1.2rem">
+          <p class="tag" style="color:#FBEDE2; margin:0">Dias 61–90 · escalar</p>
+        </div>
+        <div class="panel" style="border-radius:0 0 10px 10px">
+          <ul class="plain small">
+            <li>R$ 180 a 208 mil</li><li>lead→proposta 50%</li>
+            <li>9 a 10 contratos/mês</li><li>custo por projeto calculado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="small muted" style="text-align:center; font-style:italic; max-width:none">Tudo conferível na ficha toda segunda-feira. Se em quatro semanas não tiver melhorado nada, você vai ver isso antes de mim.</p>
+  </div>
+  <p class="premissa"><b>Premissa</b>faixas de faturamento são <strong>projeção</strong>, não promessa contratual · todos os KPIs são verificáveis semanalmente na ficha</p>
+</section>
+
+<!-- ============ 18 ============ -->
+<section class="slide dark" data-notes="Eu não vou te pedir para fechar hoje. Vou te pedir 45 minutos.
+
+Essas sete perguntas são as que transformam toda faixa que eu te mostrei hoje em número único. Enquanto elas não forem respondidas, minhas faixas ficam largas — e eu prefiro faixa larga a número bonito que eu não consigo defender.
+
+Depois dessa call eu volto com os números fechados, e AÍ você decide se contrata. É mais honesto assim, e é mais fácil para você decidir.
+
+Então: quinta ou sexta? Manhã ou fim da tarde? Eu bloqueio agora e te mando o convite antes de sair daqui.
+
+[FECHAMENTO ASSUMIDO — nunca 'fecha comigo?'] Fechado. Quinta às 9. Eu te mando o convite e a folha com as sete perguntas hoje à noite, para você já ir pensando. E se alguma resposta você não tiver, tudo bem — 'eu não sei' já é uma resposta útil para mim.
+
+[SE DISSER 'me manda por e-mail que eu vejo'] Mando sim, e mando ainda hoje. Mas essas sete perguntas só você responde, e por telefone leva 45 minutos — por e-mail leva três semanas e a metade não volta. Me dá o pior horário da sua semana, o que você acha que ninguém ia querer. Sexta às sete da manhã serve?
+
+[NÃO SAIR DA SALA SEM DATA E HORA FECHADAS.]">
+  <div class="stage">
+    <h2>45 minutos da sua agenda, <em>até sexta 11/09</em></h2>
+    <div class="split split-w">
+      <div class="grid" style="gap:1rem; align-content:start">
+        <div class="solid">
+          <div class="grid" style="gap:.55rem">
+            <div class="small"><span class="tag" style="color:var(--amber-bright); display:inline-block; width:7.5rem; margin:0">Ação</span> responder 7 perguntas sobre o seu funil</div>
+            <div class="small"><span class="tag" style="color:var(--amber-bright); display:inline-block; width:7.5rem; margin:0">Responsável</span> você, comigo conduzindo</div>
+            <div class="small"><span class="tag" style="color:var(--amber-bright); display:inline-block; width:7.5rem; margin:0">Data</span> até sexta-feira, 11/09/2026</div>
+          </div>
+        </div>
+        <div class="solid">
+          <p class="lede" style="font-weight:600; margin:0">Eu não vou te pedir para fechar hoje. Depois da call eu volto com os números fechados, e aí você decide.</p>
+        </div>
+      </div>
+      <div>
+        <p class="tag" style="color:var(--amber-bright)">As 7 perguntas</p>
+        <ol class="small tnum" style="margin:0; padding-left:1.3rem; display:grid; gap:.42rem">
+          <li>dos 60 leads, em quantos você falou de fato</li>
+          <li>quantos ficaram sem nenhuma resposta</li>
+          <li>de onde vieram os 60 leads e os 7 contratos</li>
+          <li>quantos clientes instalados e orçamentos guardados</li>
+          <li>qual o desconto médio</li>
+          <li>esse mês foi típico</li>
+          <li>qual o raio de atendimento</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <p class="premissa"><b>Premissa</b>com as respostas, o programa começa em 14/09/2026 e o bloco 1 fecha em 13/10/2026 com as três etapas medidas pela primeira vez em 6 anos</p>
+</section>
+
+<div id="hud">
+  <button id="notesBtn" type="button" aria-expanded="false">Notas <span aria-hidden="true">·</span> N</button>
+  <span id="count">1 / 18</span>
+</div>
+
+<aside id="notes" hidden aria-live="polite">
+  <button id="closeNotes" type="button">Fechar</button>
+  <h3>Fala do consultor</h3>
+  <div class="body" id="notesBody"></div>
+</aside>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  var rail = document.getElementById("rail");
+  var count = document.getElementById("count");
+  var notes = document.getElementById("notes");
+  var notesBody = document.getElementById("notesBody");
+  var notesBtn = document.getElementById("notesBtn");
+  var current = 0;
+
+  function render(){
+    count.textContent = (current + 1) + " / " + slides.length;
+    rail.style.width = ((current + 1) / slides.length * 100) + "%";
+    notesBody.textContent = slides[current].getAttribute("data-notes") || "";
+  }
+  function go(i){
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides[current].scrollIntoView({behavior:"smooth", block:"start"});
+    render();
+  }
+  function toggleNotes(force){
+    var open = force !== undefined ? force : notes.hidden;
+    notes.hidden = !open;
+    notesBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && e.intersectionRatio > 0.5){
+          current = slides.indexOf(e.target);
+          render();
+        }
+      });
+    }, {threshold:[0.5]});
+    slides.forEach(function(s){ io.observe(s); });
+  }
+
+  document.addEventListener("keydown", function(e){
+    if (e.target && /^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+    var k = e.key;
+    if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || k === " "){ e.preventDefault(); go(current + 1); }
+    else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp"){ e.preventDefault(); go(current - 1); }
+    else if (k === "Home"){ e.preventDefault(); go(0); }
+    else if (k === "End"){ e.preventDefault(); go(slides.length - 1); }
+    else if (k === "n" || k === "N"){ e.preventDefault(); toggleNotes(); }
+    else if (k === "Escape"){ toggleNotes(false); }
+  });
+
+  notesBtn.addEventListener("click", function(){ toggleNotes(); });
+  document.getElementById("closeNotes").addEventListener("click", function(){ toggleNotes(false); });
+
+  render();
+})();
+</script>
