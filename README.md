@@ -9,6 +9,21 @@ a combinação certa de agente de marketing, agente comercial (SDR e follow-up) 
 comercial. Não é um relatório bonito — é a base de uma proposta que o dono precisa
 conseguir contestar número por número.
 
+## Os dois eixos
+
+O diagnóstico roda em dois eixos independentes, e os sete agentes cobrem os dois:
+
+**Conversão** — o funil vaza? Entrada, resposta, qualificação, proposta, fechamento,
+cadência. Vem do playbook oficial.
+
+**Posicionamento** — a empresa é uma instaladora de commodity ou uma firma de engenharia?
+Ticket, margem, LTV, CAC, defensabilidade. Vem dos 9 insights de top players.
+
+Por que os dois: funil perfeito com posicionamento de commodity converte bem e **perde
+margem em toda venda**. Posicionamento de engenharia com funil ruim tem o que cobrar e
+não chega a cobrar. Um diagnóstico que só olha funil recomenda agente de IA para uma
+empresa cujo problema é que ela vende furo de telhado.
+
 ---
 
 ## Instalação
@@ -45,7 +60,8 @@ for rodar — todos os agentes leem esse arquivo.
 ```
 .claude/agents/                 os 7 subagentes
 referencia/
-  playbook-wattiq360.md         referência canônica que todos os agentes leem
+  playbook-wattiq360.md         eixo de conversão — lido por todos os agentes
+  insights-top-players.md       eixo de posicionamento — lido por todos os agentes
   wattiq360-playbook-v2.pdf     playbook original
 diagnosticos/
   _modelo/00-briefing.md        modelo de briefing para copiar
@@ -111,11 +127,11 @@ Transforme o plano da SolarLuz em apresentação executiva
 
 | # | Agente | Depende de | Web | Entrega |
 |---|---|---|---|---|
-| 1 | `diagnostico` | briefing | não | Raio-X, funil, gargalo dominante |
-| 2 | `perdas-financeiras` | 1 | não | perdas em R$, meta reversa, custo da inação |
-| 3 | `oportunidades-regionais` | 1 | **sim** | canais de aquisição na praça |
-| 4 | `perfil-cliente-ideal` | 1 | **sim** | ICP + roteiro de qualificação do SDR |
-| 5 | `analise-concorrentes` | 1 | **sim** | mapa local e lacunas de mercado |
+| 1 | `diagnostico` | briefing | não | Raio-X dos dois eixos, funil, gargalo dominante |
+| 2 | `perdas-financeiras` | 1 | não | perdas em R$, meta reversa, oportunidades de posicionamento |
+| 3 | `oportunidades-regionais` | 1 | **sim** | canais de aquisição, priorizando os de menor CAC |
+| 4 | `perfil-cliente-ideal` | 1 | **sim** | ICP (preço × projeto) + roteiro do SDR |
+| 5 | `analise-concorrentes` | 1 | **sim** | mapa local, lacunas e teste de commoditização |
 | 6 | `plano-ideal` | 1–5 | não | proposta em SPIN, investimento, 90 dias |
 | 7 | `apresentacao-executiva` | 6 | não | roteiro slide a slide com a fala |
 
@@ -162,13 +178,18 @@ a proposta usa o mais baixo. É o mais fácil de defender e já costuma bastar.
 **4. Lacuna é entregável.** Nenhum agente preenche buraco de dado com suposição para o
 relatório parecer completo — ele lista a pergunta que destrava.
 
-**5. Cada agente fecha com a passagem de bastão** para o próximo da cadeia.
+**5. Perda apurada e oportunidade estimada nunca somam.** Perda de funil vem de dado do
+cliente e vai no total. Oportunidade de posicionamento vem de benchmark setorial, fica em
+seção própria, em faixa, fora de qualquer total e fora do payback. Misturar as duas produz
+um número que o dono derruba na primeira pergunta.
 
-**6. Tom de dono para dono.** Sem jargão de IA. Quem lê é o dono da integradora, não um
+**6. Cada agente fecha com a passagem de bastão** para o próximo da cadeia.
+
+**7. Tom de dono para dono.** Sem jargão de IA. Quem lê é o dono da integradora, não um
 engenheiro: "responde todo lead em menos de um minuto, a qualquer hora" no lugar de
 "orquestração de agentes com LLM".
 
-**7. Limites éticos, do playbook.** Nunca escassez falsa. Nunca prometer parcela igual
+**8. Limites éticos, do playbook.** Nunca escassez falsa. Nunca prometer parcela igual
 ou menor que a conta sem simular com a taxa real. Projeção é projeção, nunca promessa
 contratual.
 
@@ -176,12 +197,20 @@ contratual.
 
 ## O que sustenta as recomendações
 
-Os agentes não improvisam método. Todos leem `referencia/playbook-wattiq360.md`, que
-condensa o playbook oficial: o Raio-X de 10 blocos, as 6 perguntas de controle, o mapa
+Os agentes não improvisam método. Todos leem os dois arquivos de `referencia/`.
+
+`playbook-wattiq360.md` condensa o playbook oficial: o Raio-X de 10 blocos, as 6 perguntas de controle, o mapa
 de gargalos, os canais de geração de demanda e a regra dos 50%, os 8 critérios de
 qualificação e o cartão de oportunidade, comissão sobre margem × faturamento, a cadência
 D+0 → D+15, o banco de argumentos do solar, o framework de objeção, os KPIs e o ritual
 semanal.
+
+`insights-top-players.md` traz os 9 insights de top players — projeto e engenharia acima
+de instalação, leadgen por intenção ativa, SLA de 5 minutos, proposta visual, O&M embutido,
+parcerias com arquitetos, follow-up técnico, o moat de relacionamento mais histórico
+documentado, e o risco de commoditização por preço. Os percentuais de lá são **referência
+setorial sem fonte declarada**: servem para dimensionar oportunidade e ordenar prioridade,
+nunca para prometer resultado ao cliente.
 
 Duas regras do playbook decidem quase toda recomendação do agente 6:
 
@@ -203,5 +232,6 @@ as letras.
   `.claude/agents/plano-ideal.md`.
 - **Modelo**: os agentes 3, 4 e 5 rodam em `sonnet` (pesquisa em volume); os demais em
   `opus` (raciocínio e redação). Troque no campo `model` do frontmatter.
-- **Método**: mudou o playbook? Atualize `referencia/playbook-wattiq360.md` — os sete
+- **Método**: mudou o playbook ou a leitura de mercado? Atualize
+  `referencia/playbook-wattiq360.md` ou `referencia/insights-top-players.md` — os sete
   agentes passam a seguir o novo, sem editar agente por agente.

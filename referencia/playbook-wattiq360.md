@@ -4,6 +4,13 @@ Destilado do playbook oficial (`referencia/wattiq360-playbook-v2.pdf`). **Todos 
 agentes leem este arquivo antes de trabalhar.** Quando houver conflito entre o que
 um agente "acha" e o que está aqui, vale o que está aqui.
 
+> **O diagnóstico roda em dois eixos, e os dois são obrigatórios.**
+> Este arquivo é o eixo de **conversão**: o funil vaza?
+> `referencia/insights-top-players.md` é o eixo de **posicionamento**: a empresa é uma
+> instaladora de commodity ou uma firma de engenharia?
+> São independentes. Funil perfeito com posicionamento de commodity converte bem e perde
+> margem em toda venda. Leia os dois antes de qualquer análise.
+
 ---
 
 ## Tese
@@ -104,6 +111,14 @@ Regra: corrija primeiro a etapa que mais limita o resultado atual.
 | Pipeline parado | Follow-up irregular | Vendedor + IA | Cadência multicanal e próximos passos |
 
 > **Regra:** não coloque mais tráfego em um funil que não converte. Processo primeiro, escala depois.
+
+### O gargalo que não aparece neste mapa
+
+Este mapa cobre o eixo de conversão. Quando **todas** as etapas estão razoáveis e o
+resultado ainda não vem — ou quando o motivo de perda declarado é "preço" —, o gargalo
+não está no funil: está no **posicionamento**. Vá para `insights-top-players.md`, rode os
+10 blocos do Raio-X de posicionamento e teste a hipótese de commoditização (insight 9)
+antes de concluir que o mercado está barato.
 
 ---
 
