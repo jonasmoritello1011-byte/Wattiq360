@@ -1181,3 +1181,498 @@ E a linha que dinheiro nenhum recupera depois: **o histórico não medido não v
 entregue sem registro não se fotografa dois anos depois.**
 
 ---
+
+## 9. Plano de 90 dias
+
+**Início proposto: segunda-feira, 21/09/2026**, condicionado à call de destrave da seção 11
+(terça, 15/09/2026).
+
+> **O mês 1 não promete faturamento. Promete duas coisas: medir e decidir.**
+> Qualquer proposta que prometesse crescimento de receita nos primeiros 30 dias numa empresa
+> que não mede três etapas do próprio funil estaria chutando. **A LEOSOL não vai crescer em
+> setembro porque contratou software. Vai crescer quando enxergar onde perde** — e isso
+> começa com uma folha de sete linhas e meia hora por semana.
+
+---
+
+### Bloco 1 · dias 1–30 (21/09 a 20/10/2026) — **Instrumentar e decidir**
+
+**Regra do bloco: nada de otimizar antes de medir.**
+
+**O que a Wattiq entrega**
+
+*Camada Gestão (Mentoria) — a fundação:*
+- **Ficha semanal de sete linhas** implantada na semana 1: leads · qualificados ·
+  diagnósticos · propostas · vendas · conversão por etapa · principal motivo de perda →
+  gargalo atual, ação, responsável, prazo.
+- **Reunião semanal de 30 minutos instalada já na primeira semana**, com as cinco perguntas
+  do playbook: estamos no ritmo da meta? qual etapa está abaixo da referência? qual o
+  principal motivo de perda? quem precisa de treinamento? qual ação será testada nesta
+  semana?
+- **Política de desconto escrita** — até quanto se dá, em troca de quê, e o que se oferece
+  antes de oferecer desconto. Com a régua na mesa: **R$ 1.400/mês de margem por ponto
+  percentual**.
+- **Base de comissão definida no papel: sobre margem, não sobre faturamento** — antes de
+  existir vendedor, porque corrigir depois é conflito, não ajuste.
+- **Catálogo de motivos de perda** — hoje os motivos 2 e 3 não existem.
+
+*Camadas Atendimento + Qualificação (SDR):*
+- **SLA de resposta imediata**, com cobertura noturna e de fim de semana.
+- **Roteiro único de qualificação**, com os 8 critérios mínimos, começando pelo pedido da
+  foto/PDF da conta de luz, e com **os dois branches** (residencial B1 / comercial B3-CNPJ).
+- **Critérios eliminatórios e régua de temperatura A/B/C** configurados e validados.
+- **Cartão de oportunidade** chegando ao dono com o campo **tipo de compra (preço por Wp ou
+  projeto)** já preenchido.
+- **Registro das três etapas hoje cegas** — contato efetivo, qualificados, diagnósticos.
+
+*Eixo 2, faixa "de graça e agora" — não disputa a agenda do dono:*
+- **Prazo de instalação, garantia detalhada (marca, cobertura, prazo) e simulação real de
+  financiamento (parcela × conta atual, com a taxa real da linha) escritos em toda
+  proposta** — as três colunas que **nenhum dos sete concorrentes de Franca preencheu**.
+- **Google Meu Negócio reivindicado, verificado e completo** (nome, categoria, endereço,
+  fotos, horário).
+- Roteiro de pedido de avaliação a clientes já instalados.
+
+**O que a LEOSOL precisa fazer**
+- **O dono: 30 minutos por semana, 4 semanas seguidas, sem exceção.** É o item mais caro do
+  projeto e o único que não pode ser delegado.
+- **Responder as 12 perguntas da call de destrave** (seção 11) — inclusive as incômodas.
+- **Decidir o ramo do eixo 2**: A (formalizar o que já existe) ou B (montar a capacidade,
+  definindo até o dia 30 **quem assina** — engenheiro parceiro comissionado ou contratação).
+- **Liberar acesso** ao WhatsApp e a todos os canais de entrada de lead.
+- **Aceitar que a IA reprove lead sem passar por ele.** Se tudo continuar caindo no colo do
+  dono "por garantia", o SDR não entrega nada.
+- **Indicar uma pessoa que não seja o dono** para a faixa de publicação (GMB, obras,
+  avaliações).
+- **Contar a base**: quantos clientes instalados em 6 anos, quantos orçamentos antigos
+  guardados.
+
+**KPI que prova que funcionou — verificável, no dia 30**
+
+| KPI | Hoje | Meta do bloco 1 |
+|---|---|---|
+| Tempo médio de 1ª resposta | 10 min | **abaixo de 5 minutos**, medido em 100% dos leads |
+| Leads com etapa e motivo registrados | 0% nas 3 etapas do meio | **100%** |
+| Contato efetivo · qualificados · diagnósticos | **não existem** | **os três números existem** |
+| Ficha semanal preenchida | não existe | **4 de 4 semanas** |
+| Reunião de 30 min realizada | não existe | **4 de 4 semanas** |
+| Taxa de qualificação (qualificados ÷ leads) | não existe | **calculada e registrada** |
+| Política de desconto e base de comissão | não existem | **escritas e assinadas** |
+| Prazo + garantia + simulação de financiamento na proposta | não informado | **em 100% das propostas emitidas** |
+| Google Meu Negócio | não localizado | **ficha ativa e verificada** |
+| Ramo do eixo 2 (A ou B) | indefinido | **decidido, com quem assina nomeado no Ramo B** |
+
+**O que este bloco NÃO promete:** aumento de faturamento. Se ele vier, é bônus — não é o
+compromisso do mês 1.
+
+---
+
+### Bloco 2 · dias 31–60 (21/10 a 19/11/2026) — **Converter e não deixar morrer**
+
+**Regra do bloco: agora que o funil tem número, mexer nele.**
+
+**O que a Wattiq entrega**
+
+*Camada cadência (Follow-up) — entra agora:*
+- **Cadência D+0 → D+15 rodando em 100% das propostas**: D+0 resumo e próximo passo · D+1
+  economia no cenário do cliente · D+3 caso de perfil semelhante · D+5 objeção principal ·
+  D+7 pergunta objetiva de avanço · D+15 reativação com motivo novo · depois, nutrição.
+- **Cada toque com motivo novo** — revisão de consumo, ajuste de layout, tarifa atualizada,
+  simulação com a taxa real. **Nunca "viu minha proposta?"**.
+- **Base parada na cadência**: clientes instalados e orçamentos antigos, com motivo pronto —
+  **o reajuste de +9,15% (residencial) e +18,75% (alta tensão) de abril de 2026**.
+- **Pedido de indicação virando sistema**, disparado depois da instalação e do primeiro mês
+  de geração — formalizando o canal que hoje sustenta a empresa e ninguém opera.
+
+*Camadas Venda + Gestão (Mentoria):*
+- **Roteiro de diagnóstico comercial** e os **10 momentos da apresentação da proposta** —
+  proposta **apresentada**, não enviada por WhatsApp.
+- **Banco de argumentos de Franca** e tratamento das cinco objeções (acolher → isolar →
+  reenquadrar → confirmar), com foco em "está caro" e "vou pegar outros orçamentos".
+- **Tabela de comparação honesta** para responder ao "vou pegar outros orçamentos": nenhum
+  dos sete concorrentes publica ART, memorial, layout, geração simulada, O&M comprovado,
+  obra documentada, prazo, garantia detalhada ou simulação real de financiamento.
+
+*Eixo 2 — Ramo A:*
+- **ART, memorial e projeto dentro da proposta como entregável nomeado e precificado.**
+- **Material técnico de uma página** para arquiteto e construtora (ficha de especificação,
+  não PDF de preço).
+- **Primeira conversa com SD3 Empreendimentos** (que já anuncia fotovoltaico em 4 obras) e
+  com **mf+arquitetos**.
+
+*Eixo 2 — Ramo B:*
+- **Pacote mínimo do entregável montado** (ART, memorial, layout, geração mês a mês) e
+  rodado em **um projeto residencial piloto** — aprender antes de vender.
+- Engenheiro parceiro contratualizado, com comissão ou valor por projeto definido.
+
+*Nos dois ramos:*
+- **5 a 10 obras publicadas com potência (kWp) e geração** — número por projeto.
+- **Toda obra nova documentada**: foto, potência, geração medida, cliente-referência.
+
+**O que a LEOSOL precisa fazer**
+- **Manter a meia hora semanal.** É aqui que quase todo projeto morre.
+- Entregar a **lista de clientes instalados e orçamentos antigos** dos últimos 12–24 meses.
+- **Apresentar a proposta em reunião** — mudança de hábito, não de ferramenta.
+- **Aplicar a política de desconto**, inclusive quando doer.
+- Liberar **uma pessoa com agenda** para as visitas de parceria (SD3, mf+arquitetos, AERF) —
+  **se não houver essa pessoa, este item sai do bloco e isso fica registrado**, não fingido.
+- Decidir se vai contratar vendedor, com os números do bloco 1 na mão.
+
+**KPI que prova que funcionou — verificável, no dia 60**
+
+| KPI | Hoje | Meta do bloco 2 |
+|---|---|---|
+| Taxa lead → proposta | 33,3% | **≥ 45%** |
+| Propostas/mês | 20 | **≥ 24**, sem aumentar as horas do dono |
+| Propostas com cadência D+0→D+15 registrada | destino desconhecido | **100%** |
+| Motivo de perda catalogado | 1 motivo de 3 | **100% das propostas perdidas** |
+| Base parada listada e contatada | número não existe | **número absoluto registrado** |
+| Obras publicadas com potência e geração | 0 | **≥ 5** |
+| Tempo de 1ª resposta | 10 min | **mantido abaixo de 5 min** |
+| Ritmo vs. meta (realizado ÷ necessário) | não medido | **calculado toda semana** |
+| Ramo A: conversas com parceiro técnico | 0 | **≥ 2 realizadas** |
+| Ramo B: projeto piloto com entregável completo | 0 | **1 rodado ponta a ponta** |
+
+---
+
+### Bloco 3 · dias 61–90 (20/11 a 19/12/2026) — **Escalar o que já converte**
+
+**Regra do bloco: só agora se discute volume — e só se o gatilho tiver sido batido.**
+
+**O que a Wattiq entrega**
+- **Revisão da meta reversa com as taxas reais medidas**, não com as projetadas. Aqui a
+  conversa deixa de ser hipótese: a empresa vai saber quantos leads e quantas propostas a
+  meta exige **nos números dela**.
+- **Decisão de capacidade com dado na mesa**: contratar vendedor (com rampa do playbook —
+  **meta zero até o dia 30, 40% até o 60, 70% até o 90, cheia a partir do 91**; quem entrar
+  aqui **não entrega meta cheia dentro destes 90 dias**, e a projeção já contava com isso),
+  ou seguir com as horas devolvidas pela triagem automática.
+- **Agente de Marketing, se e somente se o gatilho for atingido**: lead→proposta ≥ 45% por
+  dois meses consecutivos e folga na agenda de propostas. Se não for, **ele não entra, e o
+  motivo vai escrito na ficha.**
+- **Roteiro de venda B2B** (comprador de projeto): argumento para o contador — retorno como
+  linha de despesa operacional —, comparação entre linha subsidiada (0,5%–1% a.m.) e linha
+  comercial (0,99%–1,40% a.m.), geração simulada com a sazonalidade real da produção.
+- **Rodada de parceria**: AERF como porta institucional, contadores do polo calçadista.
+
+*Eixo 2 — Ramo A:* **primeira proposta B2B de ticket ≥ R$ 50.000 apresentada.**
+*Eixo 2 — Ramo B:* **um projeto com ART emitida e memorial entregue, documentado e
+publicado.** **Prospecção B2B ativa não começa antes disso.**
+
+**O que a LEOSOL precisa fazer**
+- Manter a meia hora semanal — 12 de 12 semanas.
+- **Tomar a decisão de capacidade**, com número, não com sensação.
+- Se contratar: **roleplay gravado de qualificação e diagnóstico** na seleção (revela em 20
+  minutos o que a entrevista esconde), e comissão sobre margem já escrita.
+- Decidir se abre a frente B2B agora ou no trimestre seguinte — **com a resposta do ramo já
+  conhecida**.
+
+**KPI que prova que funcionou — verificável, no dia 90**
+
+| KPI | Hoje | Meta do bloco 3 |
+|---|---|---|
+| Taxa lead → proposta | 33,3% | **≥ 50%** |
+| Taxa proposta → contrato | 35,0% | **≥ 40%** |
+| Contratos/mês | 7 | **≥ 10** *(meta de acompanhamento, não promessa contratual)* |
+| Custo por projeto (investimento em geração ÷ projetos) | **não existe** | **calculado pela 1ª vez** |
+| Ritmo vs. meta | não medido | **verde ou vermelho declarado toda semana** |
+| Reunião de 30 min | não existia | **12 de 12 semanas realizadas** |
+| Ramo A: proposta B2B ≥ R$ 50.000 apresentada | 0 | **≥ 1** |
+| Ramo B: projeto com ART emitida e publicado | 0 | **1** |
+| Decisão de capacidade | adiada há 6 anos | **tomada e escrita** |
+
+---
+
+### O ritual que sustenta os 90 dias
+
+**Toda segunda-feira, 30 minutos, a ficha de sete linhas na mesa.** Sem exceção, sem
+substituir por mensagem, sem "essa semana está corrida".
+
+```
+FICHA SEMANAL — LEOSOL
+leads · qualificados · diagnósticos · propostas · vendas · conversão por etapa · ticket
+principal motivo de perda
+→ gargalo atual · ação desta semana · responsável · prazo
+```
+
+**As cinco perguntas, na ordem:** estamos no ritmo da meta? qual etapa está abaixo da
+referência? qual o principal motivo de perda? quem precisa de treinamento? qual ação será
+testada nesta semana?
+
+> **Se esta reunião não acontecer, nada do resto funciona.** É a única parte deste plano que
+> a Wattiq não consegue fazer pela LEOSOL.
+
+---
+
+## 10. Riscos e premissas
+
+O que precisa ser verdade para os números se sustentarem — e o que fazer se não for.
+
+### 10.1 A premissa mais importante, e ela é nova
+
+> **O plano de posicionamento não pode ser escrito antes de saber se a LEOSOL entrega
+> projeto técnico ou orçamento de kit.**
+
+**Dez minutos de call separam um plano de 120 dias de um plano de 3 dias.** Se escrevermos o
+plano errado, custa meses: "montar o entregável do zero" e "publicar o que já existe" são
+projetos com custo, prazo e time completamente diferentes. **Por isso esta proposta tem dois
+ramos e não escolhe um no escuro.**
+
+**Se a resposta não vier na call:** o bloco 1 roda inteiro assim mesmo — nada do eixo de
+conversão depende dela —, e as ações de eixo 2 do bloco 1 (três colunas na proposta, GMB,
+obras publicadas) também valem nos dois ramos. **O que trava é só o bloco 2 do eixo 2.**
+
+### 10.2 As dez premissas frágeis, com o plano B de cada uma
+
+| # | Premissa | Se não se sustentar |
+|---|---|---|
+| 1 | **10% a 25% dos 40 leads são recuperáveis** (P1) — estimativa nossa, confiança baixa, e **multiplica a maior perda do documento** | Se a maioria dos 40 não tinha perfil, **P1 despenca e o problema vira geração, não qualificação** — e a ordem dos componentes muda: o Agente de Marketing sobe. **Destrava no dia 30, com as três etapas medidas.** |
+| 2 | **40% das propostas morrem por silêncio** (P2) — e **a cadência atual não foi informada**, não foi negada | Se já existe cadência estruturada, P2 encolhe e o Follow-up vira infraestrutura pura para o crescimento de volume — **o que já é a nossa leitura**. Recalculamos na call. |
+| 3 | **20 propostas/mês é o teto do dono** — premissa de comportamento, não medição | Se ele disser "eu faço 30 se me tirarem a triagem", o gap de capacidade encolhe e a decisão de contratar vendedor pode esperar. **Melhor para o cliente, e a projeção não depende disso.** |
+| 4 | **Taxas-alvo de 50% (lead→proposta) e 40% (proposta→contrato)** — projeções de confiança baixa-média | São **metas de acompanhamento, não promessa contratual**. Se no dia 60 a taxa estiver em 40% e não 45%, revisamos o alvo na ficha semanal — não empurramos o número para frente fingindo que vai chegar. |
+| 5 | **25 min de triagem por lead e 2h por proposta** (as ~17 h/mês devolvidas) — estimativa nossa, não informada | Dois minutos de conversa fecham esse número. Se for menos, o ganho de capacidade é menor e a decisão de contratar vendedor antecipa. |
+| 6 | **Ticket de R$ 20.000 e margem de 30% como mês típico** | **Todo este documento se multiplica por esses dois números** — inclusive a régua de desconto. Se os últimos 30 dias foram atípicos, **todos os valores se deslocam junto**, e refazemos antes da apresentação. |
+| 7 | **Desconto médio desconhecido** — existe (o motivo de perda é preço), não foi medido | Pode ser **maior que todas as perdas quantificadas** (a 8%, R$ 11.200/mês contra R$ 10.900). Por isso está fora do payback e é a pergunta 10 da call. |
+| 8 | **"A maioria vem de indicação"** — não convertido em percentual, e não deve ser até a resposta | Se indicação for 90%, o risco de concentração é muito maior do que está escrito. Se for 55%, menor. **A existência do risco é alta; o tamanho é lacuna.** |
+| 9 | **A leitura do eixo 2 (Ramo A × Ramo B)** — ver 10.1 | Ramo errado custa meses. **Não escolhemos no escuro.** |
+| 10 | **Todos os percentuais do eixo 2 são referência setorial sem fonte declarada, confiança baixa** | Nenhum deles aparece como projeção de resultado da LEOSOL, **nenhum se soma a outro, e nenhum entra no payback**. Se alguém pedir "quanto isso dá em reais", a resposta honesta é: **não dá para saber ainda, e é por isso que a pergunta 2 da call existe.** |
+
+### 10.3 Riscos que não são premissa de cálculo
+
+**Risco 1 — commoditização (insight 9). É o que pode inverter a ordem deste plano.**
+Se a resposta a *"se o concorrente igualar seu preço amanhã, o que sobra?"* for **"nada"**
+ou um silêncio, então corrigir o funil apenas **entrega mais leads a uma proposta que já
+perde**. Nesse caso o eixo 2 sobe junto com o eixo 1, o bloco 2 vira construção de
+entregável técnico, e a meta de contratos do bloco 3 é revista para baixo — **com honestidade,
+não com otimismo.** O que **não** muda em nenhum cenário: as três colunas na proposta, o GMB
+e as obras publicadas. Elas são baratas e valem nos dois mundos.
+
+**Risco 2 — a meia hora do dono.** É o único item que a Wattiq não faz pela LEOSOL, e é onde
+projeto de consultoria morre. **Mitigação:** reunião no mesmo horário toda semana, ficha
+preenchida pela Wattiq antes com os dados que o SDR já registra, e um único KPI de execução
+— **realizadas ÷ previstas**, reportado no fim de cada bloco. **Se duas semanas seguidas
+forem puladas, isso vira pauta antes de virar resultado ruim.**
+
+**Risco 3 — o ticket comercial é referência, não medição.** Os ~R$ 60.000 vêm de blogs
+setoriais (R$ 4.500–5.500/kWp instalado em 2026), **não de venda da LEOSOL e não de fonte
+oficial**. A aritmética que abre o caminho B é sólida na direção e frágil no número exato.
+**Mitigação:** a primeira proposta B2B real substitui a referência pelo dado da empresa.
+
+**Risco 4 — o fechamento de 35% tende a cair em B2B.** Mais decisores (sócio + contador),
+ciclo mais longo, aprovação de investimento. Por isso a seção 4.4 traz o teste de estresse a
+25% e a 20%. **Mitigação:** não prometer volume B2B mensal antes de existir um ciclo medido.
+
+**Risco 5 — o lead B2B não vem do mesmo lugar que o residencial.** A indicação residencial
+não gera lead industrial sozinha. O caminho B **exige canal**: contadores, ACIF, Sindifranca,
+arquitetos e construtoras — e todos são de 60 a 120 dias. **Mitigação:** o residencial segue
+rodando como caixa e como ponte. **Não se pausa o que converte a 35% para esperar um canal
+que ainda não existe.**
+
+**Risco 6 — o vendedor único é uma pessoa.** Duas semanas de ausência custam ~R$ 70.000 de
+faturamento. **Mitigação parcial e honesta:** o registro no CRM e o cartão de oportunidade
+permitem que outra pessoa assuma uma oportunidade no meio — o que hoje é impossível. **Isso
+reduz o dano, não elimina a dependência.**
+
+**Risco 7 — a janela do canal de arquitetos pode fechar.** Ela não é da LEOSOL: é uma vaga
+aberta na praça inteira. **Qualquer um dos sete pode ocupá-la num mês.** Todas as outras
+perdas deste documento continuam disponíveis para corrigir em janeiro. Essa não
+necessariamente.
+
+### 10.4 O que a Wattiq NÃO resolve
+
+Dizer isso vale mais do que qualquer promessa a mais:
+
+- **Não vendemos pela LEOSOL.** Diagnóstico, apresentação, negociação e fechamento continuam
+  sendo do humano. A IA qualifica, responde, lembra e registra.
+- **Não emitimos ART e não somos responsáveis técnicos.** No Ramo B, quem assina é um
+  engenheiro — parceiro ou contratado pela LEOSOL.
+- **Não geramos indicação.** Podemos sistematizar o pedido; a confiança que faz a indicação
+  acontecer é de vocês, e levou 6 anos.
+- **Não fazemos a meia hora semanal acontecer.**
+- **Não garantimos resultado.** Tudo que está aqui é projeção com faixa, premissa e confiança
+  declaradas. **Benchmark é referência, não garantia. Projeção é projeção, nunca promessa
+  contratual.**
+- **Não compramos capacidade técnica nem relacionamento local.** Os dois se constroem, e o
+  prazo está escrito: 60 a 120 dias.
+
+---
+
+## 11. Próximo passo
+
+**Uma ação, uma data, um responsável.**
+
+> ### Call de destrave — 45 minutos
+> **Quando:** terça-feira, **15/09/2026**
+> **Quem:** o dono da LEOSOL (indispensável) + quem tem acesso ao WhatsApp e ao registro de
+> leads
+> **Responsável pela condução:** Wattiq
+> **Responsável por trazer os números:** o dono
+> **O que sai de lá:** o ramo definido (A ou B), a perda de funil com faixa estreita em vez
+> de larga, e o plano de 90 dias com data de início confirmada — **segunda, 21/09/2026**.
+
+**São 12 perguntas.** Elas cobrem os dois eixos e valem meses de plano:
+
+| # | Pergunta | Eixo | O que decide |
+|---|---|---|---|
+| **1** | **"Se o concorrente igualar seu preço amanhã, o que sobra?"** — anotar a resposta literal, inclusive o silêncio | 2 | **Se está commoditizada. É a pergunta mais importante da call.** |
+| **2** | "No fim da venda o cliente recebe **projeto técnico assinado** ou **orçamento de kit com preço**? Me mostra o último que você mandou." | 2 | **Decide o ramo: plano de 3 dias ou de 120.** |
+| **3** | "Vocês **emitem ART**? Entregam **memorial**? Está no preço? **Quem assina** — engenheiro próprio, terceirizado ou ninguém?" | 2 | **Decide o ramo.** |
+| **4** | "A proposta é um **PDF com preço** ou tem o **telhado do cliente, o layout dos módulos e a geração mês a mês**? E ela é **apresentada** numa reunião ou **enviada** por WhatsApp?" | 2 + 1 | Fecha a pergunta de controle nº 4 e o bloco 5 do raio-X de posicionamento |
+| **5** | "Existe **contrato de O&M**? Embutido na proposta ou oferecido depois? Quantos clientes têm?" | 2 | Única receita recorrente possível aqui |
+| **6** | "As obras dos 6 anos estão **fotografadas**? Você tem **geração medida** de alguma? **Quantos clientes instalados** você tem no total, e **quantos orçamentos antigos** guardados?" | 2 + 1 | Um número, três usos: moat, O&M e base parada |
+| **7** | "Dos 60 leads, em quantos você **conseguiu falar** de fato? Quantos tinham perfil? Em quantos fez **visita**? E **quantos ficaram sem nenhuma resposta**?" | 1 | **Transforma a faixa de R$ 8.400–21.000 em número único.** |
+| **8** | "Dos 60 leads e dos 7 contratos, **quantos vieram de indicação** e quantos de cada outra origem? E **quanto você investiu em marketing** no mês?" | 1 + 2 | Dá tamanho ao risco de concentração; sem isso não existe CPL, custo por projeto nem CAC |
+| **9** | "Das **13 propostas** que não fecharam: quantas foram para concorrente, quantas ficaram **sem resposta**, quantas viraram 'vou pensar'? E **o que você faz** quando o cliente não responde?" | 1 | Separa perda por silêncio (cadência resolve) de perda por preço (cadência não resolve) |
+| **10** | "Qual o **desconto médio** que você dá para fechar, e em **quantas** das 7 vendas houve desconto? Os R$ 20.000 e os 30% são de um **mês típico**?" | 1 | **Pode ser maior que todas as perdas somadas.** E todo o documento se multiplica pelo ticket e pela margem |
+| **11** | "Onde ficam **registrados** os leads hoje — CRM, planilha ou WhatsApp? Qual o **horário** de atendimento, e o que acontece com o lead que chega **21h de sábado**?" | 1 | Define se dá para instrumentar na semana 1 e o escopo do SLA |
+| **12** | "Das outras 4 pessoas, alguma poderia **atender e qualificar**? **Alguma é técnica ou engenheira?** E qual o seu **raio de atendimento** a partir de Franca?" | 1 + 2 | Define o desenho do time — e quem poderia assinar projeto no Ramo B |
+
+**As cinco prioritárias, se o tempo apertar:** **1, 2 e 3** (decidem o ramo e o eixo
+dominante), **7** (decide o tamanho da maior perda) e **10** (pode ser maior que tudo que
+foi medido).
+
+**O que queremos ouvir no fim da call:** *"vamos começar dia 21."*
+
+---
+
+## Passagem de bastão → apresentacao-executiva
+
+**A frase de abertura da reunião:** "Em 6 anos, ninguém nunca te perguntou o que a LEOSOL
+entrega ao cliente no fim da venda. A gente vai começar por aí — mas antes quero te mostrar
+uma coisa que você já sabe e que ainda não tem número: **de cada 60 leads que entram, 40
+somem antes de virar proposta, e a empresa não sabe onde.**"
+
+**Gargalo dominante em 1 frase:** o trecho **lead → proposta** — 40 de 60 leads/mês (66,7%)
+desaparecem em três etapas que a empresa não mede, porque **uma pessoa só faz o funil
+inteiro** (dado do cliente, confiança alta).
+
+**Os 3 números que sustentam a venda (com premissa):**
+1. **R$ 10.900/mês de margem vazando — R$ 130.800/ano.** *Premissa: P1 (40 leads × 10%
+   recuperáveis, piso da faixa 10%–25%, × 35% de fechamento real × R$ 6.000 de margem por
+   contrato) + P2 (13 propostas × 40% que morrem por silêncio × 8% recuperáveis). Confiança
+   baixa-média. Projeção, não promessa.*
+2. **R$ 48.000/mês de margem que a meta pede e a agenda não comporta.** *Premissa: 43
+   propostas exigidas contra teto observado de 20; é o gap inteiro da meta e **não soma** com
+   o número acima. Confiança média.*
+3. **R$ 1.400/mês de margem por ponto percentual de desconto — R$ 11.200/mês se for 8%.**
+   *Premissa: aritmética sobre ticket e margem informados (confiança alta); frequência do
+   desconto **não medida** (confiança nula). **Fora do payback.***
+
+**Qual eixo manda hoje e por quê:** **conversão.** 40 de 60 leads somem **antes** de chegar
+à mesa de comparação — melhorar o que está escrito na proposta atua sobre 20 oportunidades,
+não sobre 60. **Duas ressalvas que precisam ser ditas na reunião, não escondidas:** (a) se a
+resposta às perguntas 1, 2 e 3 mostrar que não há ART, memorial nem projeto, **a ordem
+inverte** — corrigir o funil só entregaria mais leads a uma proposta que já perde; (b) a
+parte barata do eixo 2 (três colunas na proposta, GMB, obras publicadas) é ação de dias e
+**não disputa recurso com o funil** — vai em paralelo desde o dia 1.
+
+**Combinação recomendada e o que ficou de fora:**
+**Entra no dia 1** — **Mentoria Comercial** (Venda + Gestão: instrumentação, política de
+desconto, comissão sobre margem, roteiros, ritual semanal, **e o eixo de posicionamento
+inteiro**) + **Agente SDR** (Atendimento + Qualificação: SLA abaixo de 5 min com cobertura
+noturna, 8 critérios, dois branches, cartão de oportunidade, ~17 h/mês devolvidas ao dono).
+**Entra no dia 31** — **Agente de Follow-up** (cadência D+0→D+15, base parada, pedido de
+indicação sistematizado).
+**Fica de fora:** **Agente de Marketing** (com lead→proposta em 33,3%, cada real rende um
+terço — **gatilho: ≥ 45% por dois meses**); **contratar vendedor no mês 1** (rampa do
+playbook: meta zero até o dia 30, 40% até o 60, 70% até o 90 — não entrega meta cheia nestes
+90 dias de qualquer forma); **prospecção B2B em massa antes de definir quem assina o
+projeto**; **canal de arquitetos como prioridade da agenda do dono no bloco 1**; **CRM pesado
+antes da ficha semanal rodar 4 semanas**; Sindifranca/ACIF, cooperativas, lojas de material,
+imobiliárias e troca de leads — todos de segunda onda.
+
+**Posicionamento — o que a empresa entrega hoje × o que top players entregam:**
+**Nove dos dez blocos da LEOSOL estão em branco:** não se sabe se ela entrega projeto ou kit,
+se emite ART, se entrega memorial, qual o formato da proposta, se tem O&M, se tem parceria
+técnica, se a obra existe documentada fora da cabeça do dono. Top players entregam projeto
+assinado, ART, memorial, layout no telhado do cliente, geração mês a mês, O&M embutido,
+portfólio com potência e geração, e carteira de arquitetos. **E o outro lado da mesa também
+está vazio:** nenhum dos sete concorrentes de Franca publica prazo de instalação, garantia
+detalhada, simulação real de financiamento ou SLA; nenhum publica ART, memorial, layout ou
+geração por obra; só a Legsol declara O&M (sem prova); só a SolarPrime tem processo de
+engenharia — institucional nacional, nunca provado em Franca. **O canal de arquitetos e
+construtoras está VAGO na praça inteira**, com a **SD3 Empreendimentos** já anunciando
+fotovoltaico em 4 obras ativas (porta entreaberta), **mf+arquitetos** (11 projetos no
+ArchDaily), **Ascen** (obra em andamento até 2027), **R. Ferrari**, **MR Arquitetura** e a
+**AERF** como porta institucional.
+
+**Oportunidades de posicionamento, em faixa (NÃO somadas às perdas, NÃO no payback):**
+- **Ticket com projeto técnico (insight 1): +20% a +50% sobre R$ 20.000 → R$ 24.000 a
+  R$ 30.000 por contrato.** *Referência setorial de top players, **sem fonte declarada**,
+  confiança baixa. **Não multiplicado por volume, de propósito.** Não é projeção da LEOSOL.*
+- **Ticket comercial/industrial: ~R$ 60.000+** para sistemas de 15 kWp+. *Ordem de grandeza
+  de mercado 2026 (R$ 4.500–5.500/kWp, blogs setoriais), confiança baixa-média, **não é
+  ticket medido na LEOSOL**.*
+- **LTV com O&M (insight 5, +25–40%): NÃO DIMENSIONADO** — a base instalada de 6 anos nunca
+  foi contada; percentual sobre base desconhecida é aritmética sobre nada.
+- **CAC com parcerias (insight 6, −30–60%): NÃO CALCULADO** — o CAC de hoje **não existe como
+  número** (investimento em marketing não informado, origem dos leads desconhecida).
+- **Proposta visual (insight 4) e follow-up técnico (insight 7): ordem de prioridade, não
+  reais.** **Nenhum destes percentuais se soma a outro.**
+- **A prioridade nº 1 do eixo 2 não tem percentual nenhum atrás:** escrever **prazo de
+  instalação, garantia detalhada e simulação real de financiamento** na proposta. Custo
+  quase zero, prazo de dias, **e ninguém em Franca fez isso.**
+
+**Se o concorrente igualar o preço amanhã, o que sobra:** **não sabemos — e a pergunta ainda
+não foi feita ao dono.** É a pergunta nº 1 da call, e a resposta literal dele decide se este
+eixo vira o dominante. O que já dá para dizer: hoje sobram **6 anos de indicação espontânea
+numa cidade que compara mais de três fornecedores** — confiança real que franquia nacional
+não copia rápido — e **10 minutos de resposta, melhor do que qualquer coisa que os sete
+prometem em público**. O que **não** sobra, até prova em contrário: nada escrito, nada
+publicado, nada documentado. **Se a resposta for "nada" ou um silêncio, a empresa está
+commoditizada — e nenhum ganho de conversão resolve commoditização, só acelera a corrida
+para baixo.**
+
+**Meta reversa (hoje × corrigida):**
+- **Residencial, taxas de hoje:** 15 contratos exigem **~43 propostas e ~129 leads/mês** —
+  mais que dobrar a geração, num negócio cujo canal principal é indicação (que não se compra).
+- **Residencial, taxas corrigidas** (lead→proposta 50%, proposta→contrato 40% — *projeções,
+  confiança baixa-média*): **~38 propostas e ~75 leads/mês.** **−54 leads/mês. Em vez de
+  +115% de geração, +25%.**
+- **E a parte que não pode cair:** 38 propostas **não cabem** numa agenda de 20. **Conversão
+  sozinha leva a LEOSOL a ~R$ 208.000/mês com os leads de hoje, e a ~R$ 237.000 no otimista.
+  Nunca aos R$ 300.000.**
+- **O caminho que cabe:** **5 contratos a ticket comercial de referência (~R$ 60.000) exigem
+  ~14 propostas/mês** — cabe no teto com folga. **Teste de estresse, porque o fechamento cai
+  em B2B:** a 25%, são 20 propostas (no limite); a 20%, 25 propostas (acima do teto).
+  *Ticket é referência de mercado, não medição da LEOSOL; os 35% são agregados e tendem a
+  cair em B2B.* **Ticket é a única alavanca da meta reversa que reduz volume em vez de exigir
+  mais.**
+
+**Investimento e payback:** investimento total mensal `<preencher: investimento mensal>`.
+**Payback = investimento mensal ÷ R$ 10.900** (recuperação conservadora de margem).
+**Enquanto o investimento mensal ficar abaixo de R$ 10.900, o programa se paga dentro do
+próprio mês** — no pior dos três cenários, **sem contar um real do gap da meta, sem contar a
+política de desconto e sem contar absolutamente nada do eixo de posicionamento.** Metade
+disso = payback de ~15 dias e retorno de ~2x; um terço = ~10 dias e ~3x.
+
+**As 3 objeções mais prováveis e a resposta de cada uma:**
+
+1. **"Meu problema é falta de lead, eu preciso é de mais gente entrando."**
+   → *"Com as suas taxas de hoje, bater a meta exigiria 129 leads por mês — mais que o dobro.
+   Com o funil corrigido, 75. **Você já recebe 60.** Faltam 15, não 69. E hoje, de cada real
+   que você colocasse em anúncio, um terço vira proposta. Não é que mídia seja ruim — é que
+   ela é cara demais neste funil. Corrigimos o meio primeiro, e o gatilho para o marketing
+   entrar está escrito: lead→proposta em 45% por dois meses."*
+
+2. **"Eu perco por preço. Enquanto tiver alguém mais barato, isso não muda."**
+   → *"Talvez. Mas olha o que a gente encontrou: **nenhum dos sete concorrentes de Franca
+   publica prazo de instalação, garantia detalhada ou simulação de financiamento.** Se
+   ninguém preencheu nenhuma coluna da planilha do cliente, ele decide pela única que está
+   preenchida — o preço. Ele não é mesquinho; ele não tem o que comparar. E antes de falar em
+   subir preço: **cada ponto de desconto que você dá custa R$ 1.400 por mês de margem.** A
+   primeira conversa não é sobre cobrar mais. É sobre não dar 8%."*
+
+3. **"Isso é mais uma mensalidade, e eu já estou apertado com a meta."**
+   → *"A conta está aberta e você confere sozinho: **enquanto o investimento mensal ficar
+   abaixo de R$ 10.900, ele se paga dentro do próprio mês** — usando o pior dos três
+   cenários, sem contar nada da meta e nada de posicionamento. E o que a gente compara não é
+   com o preço de outro fornecedor: é com o custo de não fazer nada. **Em 12 meses são
+   R$ 130.800 de margem vazando, 480 leads que somem sem rastro e 156 propostas perdidas sem
+   motivo catalogado.** Dessas, a única que dinheiro nenhum recupera depois é a última:
+   **histórico não medido não volta.**"*
+
+**O pedido final (o próximo passo que queremos ouvir "sim"), com data:**
+> **"Terça, 15 de setembro, 45 minutos, você e eu. São 12 perguntas — cinco delas decidem se
+> o seu plano é de 3 dias ou de 120. Se as respostas confirmarem o que a gente viu, a gente
+> começa na segunda, dia 21."**
