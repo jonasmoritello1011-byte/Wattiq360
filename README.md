@@ -63,8 +63,11 @@ referencia/
   playbook-wattiq360.md         eixo de conversão — lido por todos os agentes
   insights-top-players.md       eixo de posicionamento — lido por todos os agentes
   wattiq360-playbook-v2.pdf     playbook original
+  formularios/
+    diagnostico-360-formulario.html   formulário padrão de coleta (passo 0)
+    README.md                          mapa das 10 perguntas para os dois eixos
 diagnosticos/
-  _modelo/00-briefing.md        modelo de briefing para copiar
+  _modelo/00-briefing.md        modelo de briefing em markdown, alternativa ao formulário
   <empresa>/                    uma pasta por cliente diagnosticado
     00-briefing.md
     01-diagnostico.md
@@ -81,15 +84,29 @@ escrito para o próximo da fila.
 
 ## Como rodar
 
-### Passo 0 — briefing
+### Passo 0 — coleta
+
+O padrão é mandar `referencia/formularios/diagnostico-360-formulario.html` para o
+cliente preencher (ou preencher junto com ele por telefone) **antes** de rodar o
+agente 1. É um formulário estático, sem servidor — abre em qualquer navegador, tem
+barra de progresso e um botão que copia as respostas prontas no formato
+`Rótulo: valor`. Cole esse texto direto no prompt do agente `diagnostico`.
+
+As 10 perguntas do formulário cobrem a maior parte dos dois eixos — o mapa completo,
+pergunta por pergunta, está em `referencia/formularios/README.md`. O que ele não
+cobre (contato efetivo separado, parcerias com arquitetos, contra quem se perde,
+desconto médio) continua indo para a lista de perguntas que o agente 1 devolve.
+
+Sem formulário à mão — call não agendada, cliente sem paciência — use o briefing em
+markdown como alternativa:
 
 ```bash
 mkdir -p diagnosticos/solarluz && cp diagnosticos/_modelo/00-briefing.md diagnosticos/solarluz/
 ```
 
-Preencha com o que veio da call. Campo sem resposta fica "não sei" — os agentes tratam
-isso como lacuna e devolvem a pergunta a fazer. Não invente número aqui: um chute no
-briefing contamina os sete relatórios.
+Nos dois formatos, campo sem resposta fica em branco/"não sei" — os agentes tratam
+isso como lacuna e devolvem a pergunta a fazer. Não invente número aqui: um chute na
+coleta contamina os sete relatórios.
 
 ### Passos 1 e 2 — sequenciais
 

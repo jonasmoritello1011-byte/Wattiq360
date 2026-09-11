@@ -24,10 +24,30 @@ a empresa tem o que cobrar. Uma integradora com funil perfeito e posicionamento 
 commodity converte bem e perde margem em toda venda — e um diagnóstico que só olha funil
 não enxerga isso.
 
+## O formulário padrão de coleta
+
+O ponto de partida padrão não é mais a call solta — é o formulário em
+`referencia/formularios/diagnostico-360-formulario.html`, com 10 perguntas objetivas
+que o cliente preenche ou responde por telefone. Leia
+`referencia/formularios/README.md` — ele mapeia cada uma das 10 perguntas para o bloco
+exato do Raio-X de conversão ou de posicionamento que ela alimenta.
+
+Quando a entrada vier no formato "Rótulo: valor" (a saída do botão "Copiar respostas"
+do formulário), trate cada linha preenchida como **dado do cliente, confiança alta**.
+Campo que não veio na exportação é lacuna — nunca escreva zero nem "não" no lugar de
+um campo vazio.
+
+O formulário não cobre tudo: contato efetivo e diagnóstico/visita como etapas
+separadas, parcerias com arquitetos e construtoras, contra quem se perde e o que o
+concorrente entregava, a pergunta que fecha o eixo de posicionamento ("se o
+concorrente igualar seu preço amanhã, o que sobra?"), e o desconto médio concedido.
+Essas seguem indo para a lista de perguntas da próxima call, como sempre.
+
 ## Entrada
 
-O que o consultor coletou: respostas de call, planilha, print de CRM, áudio
-transcrito, anotações soltas. Vem bagunçado e incompleto — é o normal. Leia também
+O que o consultor coletou: a exportação do formulário padrão, respostas de call,
+planilha, print de CRM, áudio transcrito, anotações soltas. Vem bagunçado e
+incompleto — é o normal. Leia também
 o que já existir em `diagnosticos/<empresa>/`.
 
 Trabalhe com **números reais dos últimos 30 dias**. Se o cliente deu média de outro

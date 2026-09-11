@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Diagnóstico Wattiq 360</title>
+<meta name="description" content="Diagnóstico comercial e de marketing Wattiq 360" />
+<style>
+:root{
+  --bg:#f7f7fb;
+  --surface:#ffffff;
+  --surface-soft:#fbf9ff;
+  --text:#171526;
+  --muted:#6f6a7d;
+  --line:#ebe7f2;
+  --purple:#5b36c8;
+  --purple-2:#7a3fd6;
+  --magenta:#c62f9c;
+  --pink:#e03a9d;
+  --success:#1f9d72;
+  --shadow:0 20px 60px rgba(53,31,94,.10);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 85% 8%, rgba(198,47,156,.10), transparent 26%),
+    radial-gradient(circle at 10% 22%, rgba(91,54,200,.10), transparent 24%),
+    var(--bg);
+}
+button,input,textarea,select{font:inherit}
+.shell{max-width:1180px;margin:0 auto;padding:28px 20px 80px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:32px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.02em}
+.brand img{width:42px;height:42px;border-radius:12px;object-fit:cover;box-shadow:0 8px 20px rgba(91,54,200,.14)}
+.brand span{font-size:17px}
+.badge{padding:9px 13px;border-radius:999px;border:1px solid rgba(91,54,200,.16);background:rgba(255,255,255,.78);backdrop-filter:blur(10px);color:var(--purple);font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:28px;align-items:stretch;margin-bottom:30px}
+.hero-main,.hero-side{background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.9);box-shadow:var(--shadow);border-radius:30px}
+.hero-main{padding:44px 46px;position:relative;overflow:hidden}
+.hero-main:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-70px;top:-70px;background:linear-gradient(135deg,rgba(198,47,156,.18),rgba(91,54,200,.16));filter:blur(1px)}
+.eyebrow{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--magenta);margin-bottom:16px}
+h1{font-size:clamp(38px,5vw,64px);line-height:.98;letter-spacing:-.055em;margin:0 0 18px;max-width:760px}
+h1 .grad{background:linear-gradient(90deg,var(--magenta),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;line-height:1.65;color:var(--muted);max-width:720px;margin:0}
+.hero-side{padding:28px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#ffffff,#faf7ff)}
+.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px}
+.kpi div{border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+.kpi strong{font-size:24px;display:block;letter-spacing:-.03em}
+.kpi span{font-size:12px;color:var(--muted)}
+.tip{margin-top:18px;padding:16px 17px;border-radius:16px;background:linear-gradient(135deg,rgba(91,54,200,.08),rgba(198,47,156,.08));border:1px solid rgba(91,54,200,.10);font-size:13px;line-height:1.5;color:#514b61}
+.layout{display:grid;grid-template-columns:280px 1fr;gap:24px;align-items:start}
+.sidebar{position:sticky;top:20px;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.9);box-shadow:0 12px 40px rgba(53,31,94,.08);border-radius:22px;padding:20px}
+.progress-head{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:800;margin-bottom:10px}
+.progress-track{height:8px;background:#eeeaf4;border-radius:999px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--magenta),var(--purple));transition:.25s ease}
+.nav{display:flex;flex-direction:column;gap:7px;margin-top:18px}
+.nav a{color:#625c70;text-decoration:none;padding:10px 12px;border-radius:12px;font-size:13px;font-weight:700;transition:.2s}
+.nav a:hover{background:#f6f2fb;color:var(--purple)}
+.actions{display:grid;gap:9px;margin-top:18px}
+.btn{border:0;border-radius:13px;padding:12px 14px;font-weight:800;cursor:pointer;transition:.2s}
+.btn-primary{background:linear-gradient(90deg,var(--magenta),var(--purple));color:#fff;box-shadow:0 10px 24px rgba(91,54,200,.18)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-secondary{background:#f3f0f8;color:#4d4660}
+.form-wrap{display:flex;flex-direction:column;gap:16px}
+.card{background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.92);box-shadow:0 12px 36px rgba(53,31,94,.07);border-radius:var(--radius);padding:28px}
+.card-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.num{flex:0 0 42px;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:900;background:linear-gradient(145deg,var(--magenta),var(--purple));box-shadow:0 9px 20px rgba(91,54,200,.16)}
+.card h2{font-size:22px;letter-spacing:-.03em;margin:2px 0 5px}
+.card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:12px;font-weight:900;letter-spacing:.02em;color:#4d4758}
+.input,textarea,select{width:100%;border:1px solid var(--line);background:#fff;border-radius:13px;padding:13px 14px;color:var(--text);outline:none;transition:.2s}
+.input:focus,textarea:focus,select:focus{border-color:rgba(91,54,200,.48);box-shadow:0 0 0 4px rgba(91,54,200,.08)}
+textarea{min-height:112px;resize:vertical}
+.helper{font-size:12px;color:#928b9f;margin-top:2px}
+.info{margin-top:16px;padding:14px 16px;border-left:3px solid var(--purple);background:#faf8ff;border-radius:0 12px 12px 0;color:#665f74;font-size:13px;line-height:1.55}
+.footer{margin-top:26px;text-align:center;color:#847d90;font-size:12px}
+.toast{position:fixed;right:20px;bottom:20px;padding:13px 16px;border-radius:13px;background:#1e1b2a;color:#fff;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transform:translateY(8px);transition:.25s;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.toast.show{opacity:1;transform:translateY(0)}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.sidebar{position:relative;top:auto}.nav{display:none}.hero-main{padding:34px 28px}.hero-side{padding:24px}.grid2{grid-template-columns:1fr}.shell{padding:18px 14px 60px}}
+@media print{body{background:#fff}.sidebar,.actions,.toast,.badge{display:none!important}.topbar{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e8e3f0}.brand img{width:34px;height:34px;box-shadow:none}.hero-main{padding:22px 24px}.hero-main:after{display:none}h1{font-size:26px!important;margin-bottom:10px}.lead{font-size:13px}.hero-side{padding:18px}.kpi strong{font-size:18px}.shell{max-width:none;padding:0}.hero{display:block}.hero-side{margin-top:14px}.card,.hero-main,.hero-side{box-shadow:none;border:1px solid #ddd;break-inside:avoid}.layout{display:block}.form-wrap{gap:10px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand"><img src="data:image/jpeg;base64,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" alt="Wattiq"><span>Wattiq 360</span></div>
+    <div class="badge">Diagnóstico Estratégico</div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Marketing + Comercial + Processo</div>
+      <h1>10 perguntas para encontrar onde sua empresa <span class="grad">está deixando dinheiro na mesa.</span></h1>
+      <p class="lead">Responda com estimativas reais dos últimos 30 dias. Não precisa ser exato: se algum número for aproximado, basta sinalizar. O objetivo é chegar à reunião com um diagnóstico claro, prático e personalizado.</p>
+    </div>
+    <aside class="hero-side">
+      <div>
+        <div class="eyebrow">Como funciona</div>
+        <div class="kpi">
+          <div><strong>10</strong><span>perguntas essenciais</span></div>
+          <div><strong>1h</strong><span>de reunião estratégica</span></div>
+        </div>
+      </div>
+      <div class="tip"><strong>Regra de ouro:</strong> se não souber alguma resposta, tudo bem. A ausência do dado também faz parte do diagnóstico.</div>
+    </aside>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="progress-head"><span>Progresso</span><span id="progressText">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <nav class="nav">
+        <a href="#q1">01. Funil</a><a href="#q2">02. Ticket e meta</a><a href="#q3">03. Mídia</a><a href="#q4">04. Origem dos leads</a><a href="#q5">05. Tempo de resposta</a><a href="#q6">06. Motivos de perda</a><a href="#q7">07. Proposta e follow-up</a><a href="#q8">08. Região e segmento</a><a href="#q9">09. Base instalada</a><a href="#q10">10. Posicionamento técnico</a>
+      </nav>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="copyAnswers()">Copiar respostas</button>
+        <button class="btn btn-secondary" onclick="window.print()">Salvar em PDF</button>
+      </div>
+    </aside>
+
+    <main class="form-wrap" id="form">
+      <section class="card" id="q1"><div class="card-head"><div class="num">1</div><div><h2>O funil em quatro números</h2><p>Use os últimos 30 dias como referência.</p></div></div><div class="grid2"><div class="field"><label>Leads recebidos</label><input class="input" data-label="Leads recebidos" type="number" placeholder="Ex.: 120"></div><div class="field"><label>Leads qualificados</label><input class="input" data-label="Leads qualificados" type="number" placeholder="Ex.: 48"></div><div class="field"><label>Propostas apresentadas</label><input class="input" data-label="Propostas apresentadas" type="number" placeholder="Ex.: 30"></div><div class="field"><label>Contratos assinados</label><input class="input" data-label="Contratos assinados" type="number" placeholder="Ex.: 8"></div></div><div class="info">Esses quatro números revelam onde o funil está perdendo oportunidades entre interesse, qualificação, proposta e fechamento.</div></section>
+
+      <section class="card" id="q2"><div class="card-head"><div class="num">2</div><div><h2>Ticket e meta</h2><p>Transformamos o funil em impacto financeiro.</p></div></div><div class="grid2"><div class="field"><label>Ticket médio por projeto (R$)</label><input class="input" data-label="Ticket médio" type="number" placeholder="Ex.: 25.000"></div><div class="field"><label>Meta de faturamento mensal (R$)</label><input class="input" data-label="Meta mensal" type="number" placeholder="Ex.: 300.000"></div></div><div class="helper">Use valores em reais por mês.</div></section>
+
+      <section class="card" id="q3"><div class="card-head"><div class="num">3</div><div><h2>Investimento em mídia e canais</h2><p>Queremos entender o quanto a geração de demanda é previsível.</p></div></div><div class="grid2"><div class="field"><label>Investimento mensal em mídia (R$)</label><input class="input" data-label="Investimento em mídia" type="number" placeholder="Ex.: 5.000"></div><div class="field"><label>Canais utilizados</label><input class="input" data-label="Canais de mídia" type="text" placeholder="Meta, Instagram, Google..."></div></div></section>
+
+      <section class="card" id="q4"><div class="card-head"><div class="num">4</div><div><h2>De onde vêm os leads</h2><p>Separe aquisição paga de indicação e orgânico.</p></div></div><div class="grid2"><div class="field"><label>Leads vindos de anúncios</label><input class="input" data-label="Leads de anúncios" type="number" placeholder="Ex.: 70"></div><div class="field"><label>Leads por indicação/orgânico</label><input class="input" data-label="Leads de indicação/orgânico" type="number" placeholder="Ex.: 50"></div></div></section>
+
+      <section class="card" id="q5"><div class="card-head"><div class="num">5</div><div><h2>Tempo de resposta</h2><p>Quanto tempo leva entre o lead entrar e o primeiro contato?</p></div></div><div class="field"><label>Tempo médio</label><input class="input" data-label="Tempo médio de resposta" type="text" placeholder="Ex.: 15 minutos, 2 horas..."></div></section>
+
+      <section class="card" id="q6"><div class="card-head"><div class="num">6</div><div><h2>Os três motivos de perda</h2><p>Liste as objeções e causas mais frequentes de uma venda não avançar.</p></div></div><div class="field"><label>Principais motivos</label><textarea data-label="3 principais motivos de perda" placeholder="1. Preço
+2. Crédito
+3. Cliente sem urgência"></textarea></div></section>
+
+      <section class="card" id="q7"><div class="card-head"><div class="num">7</div><div><h2>Proposta e follow-up</h2><p>Entenda como a negociação é conduzida depois do interesse.</p></div></div><div class="grid2"><div class="field"><label>Como a proposta é apresentada?</label><select data-label="Formato da proposta"><option value="">Selecione</option><option>Apresentada em reunião</option><option>Enviada por WhatsApp</option><option>Enviada por e-mail</option><option>Outro formato</option></select></div><div class="field"><label>Existe sequência de follow-up?</label><select data-label="Sequência de follow-up"><option value="">Selecione</option><option>Sim, definida</option><option>Existe, mas sem padrão</option><option>Não existe</option></select></div></div></section>
+
+      <section class="card" id="q8"><div class="card-head"><div class="num">8</div><div><h2>Raio de atuação e segmento</h2><p>Isso ajuda a mapear oportunidades dentro da região atual.</p></div></div><div class="grid2"><div class="field"><label>Raio de atuação (km)</label><input class="input" data-label="Raio de atuação" type="number" placeholder="Ex.: 150"></div><div class="field"><label>Segmento predominante</label><select data-label="Segmento predominante"><option value="">Selecione</option><option>Residencial</option><option>Comercial</option><option>Rural</option><option>Industrial</option><option>Misto</option></select></div></div></section>
+
+      <section class="card" id="q9"><div class="card-head"><div class="num">9</div><div><h2>Base instalada</h2><p>Queremos entender o potencial de indicação, expansão e recorrência.</p></div></div><div class="grid2"><div class="field"><label>Total de clientes já instalados</label><input class="input" data-label="Clientes instalados" type="number" placeholder="Ex.: 450"></div><div class="field"><label>Existe ação estruturada de indicação?</label><select data-label="Ação de indicação"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Existe informalmente</option></select></div></div></section>
+
+      <section class="card" id="q10"><div class="card-head"><div class="num">10</div><div><h2>Posicionamento técnico</h2><p>Como a empresa sustenta valor além do preço?</p></div></div><div class="grid2"><div class="field"><label>A proposta inclui laudo, ART e memorial técnico?</label><select data-label="Laudo, ART e memorial técnico"><option value="">Selecione</option><option>Sim, todos</option><option>Parcialmente</option><option>Não</option></select></div><div class="field"><label>Existe contrato de manutenção recorrente?</label><select data-label="Contrato de manutenção recorrente"><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Em desenvolvimento</option></select></div></div></section>
+    </main>
+  </div>
+  <div class="footer">Wattiq 360 · Diagnóstico estratégico para empresas de energia solar</div>
+</div>
+<div class="toast" id="toast">Respostas copiadas.</div>
+<script>
+const fields=[...document.querySelectorAll('input,textarea,select')];
+function updateProgress(){
+  const done=fields.filter(f=>String(f.value).trim()!=="").length;
+  const pct=Math.round(done/fields.length*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent=pct+'%';
+}
+fields.forEach(f=>f.addEventListener('input',updateProgress));
+async function copyAnswers(){
+  const lines=['DIAGNÓSTICO WATTIQ 360',''];
+  fields.forEach(f=>{ if(String(f.value).trim()!=='') lines.push((f.dataset.label||'Resposta')+': '+f.value); });
+  await navigator.clipboard.writeText(lines.join('\n'));
+  const t=document.getElementById('toast'); t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1800);
+}
+updateProgress();
+</script>
+</body>
+</html>
